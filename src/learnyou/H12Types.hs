@@ -1,5 +1,7 @@
 module H12Types where
 
+import qualified Data.Map as Map
+
 -- one way of creating our own type is with the keyword data
 data Bool = True | False
 
@@ -29,4 +31,32 @@ data Person = Person {
     lastName :: String,
     age :: Int,
     phoneNumber :: String
-}
+} deriving (Show)
+
+p1 = Person { firstName = "Harrison", lastName = "Ford", age = 67, phoneNumber = "+555112352" }
+p2 = Person "Mark" "Hamill" 59 "+4441123213"
+
+tellPerson :: Person -> String
+tellPerson (Person { firstName = f, lastName = l, age = a, phoneNumber = p }) = f ++ " " ++ l ++ " was born in " ++ show a
+
+-- type synonyms
+type Actor = Person
+type PhoneBook = [(String, String)]
+
+-- type synonyms can be parameterised too
+type MyMap k v = [(k, v)]
+
+-- partially applied types
+type IntMap k = Map.Map Int k
+
+data LockerState = Taken | Free deriving (Show, Eq)
+type Code = String
+type LockerMap = Map.Map Int (LockerState, Code)
+
+lockerLookup :: Int -> LockerMap -> Either String Code
+lockerLookup lockerNumber map =
+    case Map.lookup lockerNumber map of
+        Nothing -> Left $ "Locker number" ++ show lockerNumber ++ " doesn't exists"
+        Just (state, code) -> if state /= Taken
+            then Right code
+            else Left $ "Locker " ++ show lockerNumber ++ " is already taken"
