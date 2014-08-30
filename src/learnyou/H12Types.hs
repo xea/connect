@@ -46,6 +46,9 @@ type PhoneBook = [(String, String)]
 -- type synonyms can be parameterised too
 type MyMap k v = [(k, v)]
 
+-- typeclass constraints
+--data (Ord k) => ThisMap k v = ThisMap k v
+
 -- partially applied types
 type IntMap k = Map.Map Int k
 
@@ -60,3 +63,17 @@ lockerLookup lockerNumber map =
         Just (state, code) -> if state /= Taken
             then Right code
             else Left $ "Locker " ++ show lockerNumber ++ " is already taken"
+
+-- infix operators/functions
+infixr 5 :-:
+data InfixList a = Empty | a :-: (InfixList a)
+
+l1 = 4 :-: 5 :-: 6 :-: Empty
+
+-- infix functions
+infixr 7 ++.
+(++.) :: [a] -> [a] -> [a]
+[] ++. ys = ys
+(x:xs) ++. ys = x : (xs ++. ys)
+
+
