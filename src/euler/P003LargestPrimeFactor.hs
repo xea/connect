@@ -12,7 +12,7 @@ f n d
 f n _ = n
 
 primefactor :: Int -> Int
-primefactor n = foldl (\acc x -> f acc x ) n $ takeWhile (\x -> x < n) primes
+primefactor n = foldl (\acc x -> f acc x ) n $  takeWhile (\x -> x < 7000) primes
 
 result = primefactor 600851475143
 
