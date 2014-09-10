@@ -6,7 +6,7 @@ f :: Int -> Int -> Int
 f n 1 = n
 f n d 
 	| n == d 	= n
-	| modulo > 0 	= n
+	| modulo > 2 	= n
 	| modulo == 0 	= f (quot n d) d
 	where modulo = mod n d
 f n _ = n
