@@ -1,7 +1,5 @@
-module P001MultiplesOf3And5 where
+module Connect.Euler.P001MultiplesOf3And5(multiplesof) where
 
-result = sum [ x | x <- [1..999], mod x 3 == 0 || mod x 5 == 0 ]
+multiplesof :: Int -> Int -> Int 
+multiplesof a b = sum [ x | x <- [1..999], mod x a == 0 || mod x b == 0 ]
 
-main :: IO ()
-main = do
-	putStrLn $ show result

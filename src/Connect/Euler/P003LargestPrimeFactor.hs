@@ -1,4 +1,4 @@
-module P003LargestPrimeFactor where
+module Connect.Euler.P003LargestPrimeFactor(primefactor) where
 
 import Data.Numbers.Primes
 
@@ -14,8 +14,3 @@ f n _ = n
 primefactor :: Int -> Int
 primefactor n = foldl (\acc x -> f acc x ) n $  takeWhile (\x -> x < 7000) primes
 
-result = primefactor 600851475143
-
-main :: IO ()
-main = do
-	putStrLn $ show result
