@@ -12,3 +12,4 @@ cabal.config
 .idea
 *.iml
 *.exe
+*.swp

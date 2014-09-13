@@ -1,3 +1,5 @@
+module Connect.Algorithms.A02BinarySearchTree(Tree(..), singleton, insertTree, treeElem) where
+
 data Tree a = EmptyTree | Node a (Tree a) (Tree a) deriving (Show, Read, Eq)
 
 singleton :: Ord a => a -> Tree a
@@ -17,7 +19,7 @@ treeElem x (Node a left right)
     | x < a  = treeElem x left
     | x > a  = treeElem x right
 
-main :: IO ()
-main = do
-    putStrLn "Binary search tree algorithm"
-    putStrLn $ show $ foldr insertTree EmptyTree [ 4, 6, 1, 3, 5, 7, 8 ]
+--main :: IO ()
+--main = do
+--    putStrLn "Binary search tree algorithm"
+--    putStrLn $ show $ foldr insertTree EmptyTree [ 4, 6, 1, 3, 5, 7, 8 ]
