@@ -8,6 +8,9 @@ import Connect.Euler.P002EvenFibonacci
 import Connect.Euler.P003LargestPrimeFactor
 import Connect.Euler.P004LargestPalindromeProduct
 import Connect.Euler.P005SmallestMultiple
+import Connect.Euler.P006SumSquareDifference
+import Connect.Euler.P007Prime10001
+import Connect.Euler.P008LargestProduct
 import Connect.Euler.P009SpecialPythagorean
 
 a01result = quicksort [5, 6, 1, 2, 9]
@@ -18,6 +21,9 @@ e02result = limitedFibonacci
 e03result = primefactor 600851475143
 e04result = largestPalindromeProduct
 e05result = smallestMultiple
+e06result = sumSquareDifference
+e07result = prime10001
+e08result = largestProduct' 
 e09result = findPythagorean 1000 100 1000
 
 main :: IO ()
@@ -29,4 +35,7 @@ main = do
     putStrLn $ "Euler problem   3 result: " ++ show e03result
     putStrLn $ "Euler problem   4 result: " ++ show e04result
     putStrLn $ "Euler problem   5 result: " ++ show e05result
+    putStrLn $ "Euler problem   6 result: " ++ show e06result
+    putStrLn $ "Euler problem   7 result: " ++ show e07result
+    putStrLn $ "Euler problem   8 result: " ++ show e08result
     putStrLn $ "Euler problem   9 result: " ++ show e09result
