@@ -12,6 +12,7 @@ import Connect.Euler.P006SumSquareDifference
 import Connect.Euler.P007Prime10001
 import Connect.Euler.P008LargestProduct
 import Connect.Euler.P009SpecialPythagorean
+import Connect.Euler.P010SumOfPrimes
 
 a01result = quicksort [5, 6, 1, 2, 9]
 a02result = foldr insertTree EmptyTree [ 4, 6, 1, 3, 5, 7, 8 ]
@@ -25,6 +26,7 @@ e06result = sumSquareDifference
 e07result = prime10001
 e08result = largestProduct' 
 e09result = findPythagorean 1000 100 1000
+e10result = sumOfPrimes
 
 main :: IO ()
 main = do
@@ -39,3 +41,4 @@ main = do
     putStrLn $ "Euler problem   7 result: " ++ show e07result
     putStrLn $ "Euler problem   8 result: " ++ show e08result
     putStrLn $ "Euler problem   9 result: " ++ show e09result
+    putStrLn $ "Euler problem  10 result: " ++ show e10result
