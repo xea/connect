@@ -3,12 +3,27 @@ version:           1.0
 Build-Type:        Simple
 cabal-version:     >= 1.2
 
-executable connect
-  main-is:         Main.hs
+executable a01quicksort
+  main-is:         Connect/Algorithms/A01Quicksort.hs
+  hs-source-dirs:  src
+  build-depends:   base
+
+executable a02binarysearchtree
+  main-is:         Connect/Algorithms/A02BinarySearchTree.hs
   hs-source-dirs:  src
   build-depends:   base, containers, primes, random
 
-executable sandbox
+executable h20functors
+  main-is:         Connect/LearnYou/H20Functors.hs
   hs-source-dirs:  src
+  build-depends:   base, containers
+
+executable h21applicativeFunctors
+  main-is:         Connect/LearnYou/H21ApplicativeFunctors.hs
+  hs-source-dirs:  src
+  build-depends:   base, containers
+
+executable sandbox
   main-is:         Sandbox/Sandbox.hs
+  hs-source-dirs:  src
   build-depends:   base, containers
