@@ -2,6 +2,7 @@ module Main(main) where
 
 import Handler.Home
 import Handler.Markdown
+import Handler.Data
 import Import
 
 mkYesodDispatch "App" resourcesApp

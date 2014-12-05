@@ -12,4 +12,7 @@ instance Yesod App
 mkYesodData "App" [parseRoutes|
     /         HomeR     GET
     /markdown MarkdownR PUT
+    /data     DataR     GET
 |]
+
+-- vim: sw=2:ts=2:et
