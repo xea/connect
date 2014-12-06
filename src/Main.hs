@@ -2,6 +2,7 @@ module Main(main) where
 
 import Handler.Home
 import Handler.Markdown
+import Handler.Javascript
 import Handler.Data
 import Settings.StaticFiles
 import Import
