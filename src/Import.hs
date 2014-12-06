@@ -10,6 +10,7 @@ import Yesod               as X
 import Yesod.Default.Util
 import Yesod.Form.Jquery   as X (urlJqueryJs)
 import Yesod.Static
+import Settings.StaticFiles
 
 widgetFile :: FilePath -> ExpQ
 widgetFile = widgetFileReload def

@@ -1,6 +1,7 @@
 module Handler.Home where
 
 import Handler.Markdown
+import Settings.StaticFiles
 import Import
 
 getHomeR :: Handler Html
@@ -12,6 +13,6 @@ getHomeR = defaultLayout $ do
   [whamlet|
     <div .container>
     <h1>Connect Prototype UI
-    <img src=@{StaticR image_png}/>
+    <img src=@{StaticR image_jpg}/>
   |]
 -- vim: sw=2:ts=2:et
