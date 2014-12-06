@@ -10,9 +10,15 @@ getHomeR = defaultLayout $ do
   addScriptRemote "http://code.jquery.com/jquery-2.1.1.min.js"
   addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
   addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"
+  toWidget
+    [julius|
+      $(function() {
+        $.material.init();
+      });
+    |]
   [whamlet|
     <div .container>
     <h1>Connect Prototype UI
-    <img src=@{StaticR image_jpg}/>
   |]
+--    <img src=@{StaticR image_jpg }/>
 -- vim: sw=2:ts=2:et
