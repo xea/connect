@@ -1,10 +1,11 @@
 module Foundation where
 
-import           Yesod
-import           Yesod.Default.Util
-import           Yesod.Form.Jquery
+import Yesod
+import Yesod.Default.Util
+import Yesod.Form.Jquery
+import Yesod.Static
 
-data App = App
+data App = App { getStatic :: Static }
 
 instance Yesod App
 
@@ -13,6 +14,7 @@ mkYesodData "App" [parseRoutes|
     /         HomeR     GET
     /markdown MarkdownR PUT
     /data     DataR     GET
+    /static   StaticR   Static getStatic
 |]
 
 -- vim: sw=2:ts=2:et

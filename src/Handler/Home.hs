@@ -12,5 +12,6 @@ getHomeR = defaultLayout $ do
   [whamlet|
     <div .container>
     <h1>Connect Prototype UI
+    <img src=@{StaticR image_png}/>
   |]
 -- vim: sw=2:ts=2:et
