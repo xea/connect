@@ -1,11 +1,13 @@
 module Handler.Data where
 
 import Import
+import Sting
 
-result :: Int
-result = 14
+result :: String
+result = "lofasz"
 
 getDataR :: Handler Value
-getDataR = return $ object [ "msg" .= result ]
+getDataR = do
+    return $ object [ "msg" .= ("valami" :: String) ]
 
 -- vim: sw=2:ts=2:et
