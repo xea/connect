@@ -9,7 +9,7 @@ import Layout
 getHomeR :: Handler Html
 getHomeR = applicationLayout $ do
   setTitle "Connect Prototype UI"
-  addScriptRemote "http://code.jquery.com/jquery-2.1.1.min.js"
+  addScriptRemote "https://code.jquery.com/jquery-2.1.1.min.js"
   addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
   addScriptRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"
   addStylesheet $ StylesheetR "material.min.css"
