@@ -15,6 +15,8 @@ getHomeR = applicationLayout $ do
   addStylesheet $ StylesheetR "material.min.css"
   addStylesheet $ StylesheetR "ripples.min.css"
   addScript $ JavascriptR "angular.min.js"
+  addScript $ JavascriptR "angular-resource.min.js"
+  addScript $ JavascriptR "angular-route.min.js"
   addScript $ JavascriptR "material.min.js"
   addScript $ JavascriptR "ripples.min.js"
   addScript $ JavascriptR "application.js"

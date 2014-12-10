@@ -10,12 +10,19 @@ $(function() {
 
 	$("#ajax-input").keypress(function(event) {
 		if (event.which == 13) {
-			var url = "/data";
+			var url = "/wisdom";
 			var request = {};
 			$.getJSON(url, request, function(response) {
-				
 			});
 		}
+	});
+});
+
+var connectApp = angular.module('connectApp', []);
+
+connectApp.controller('quoteController', function ($scope, $http) {
+	$http.get('wisdom').success(function(data) {
+		$scope.quotes = data;
 	});
 });
 

@@ -9,7 +9,7 @@ applicationLayout widget = do
   withUrlRenderer
     [hamlet|
       $doctype 5
-        <html ng-app>
+        <html ng-app=connectApp>
           <head>
             <title>#{pageTitle pc}
             <meta charset=utf-8>

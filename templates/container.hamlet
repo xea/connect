@@ -1,8 +1,8 @@
-<div .container>
+<div .container ng-controller=quoteController>
   <div .navbar .navbar-warning>
     <div .navbar-header>
       <form .navbar-form .navbar-left>
         <input #ajax-input .form-control .col-lg-8 type=text autocomplete=off>
-  <div .alert .alert-dismissable .alert-info>
+  <div .alert .alert-dismissable .alert-info ng-repeat="quote in quotes">
     <button .close type=button data-dismiss=alert> x
-    Fufufuufuf
+    {{quote}}

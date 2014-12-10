@@ -14,6 +14,7 @@ mkYesodData "App" [parseRoutes|
     /               HomeR         GET
     /markdown       MarkdownR     PUT
     /data           DataR         GET
+    /wisdom         WisdomR       GET
     /js/#String     JavascriptR   GET
     /css/#String    StylesheetR   GET
     /static         StaticR   Static getStatic
