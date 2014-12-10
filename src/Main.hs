@@ -13,6 +13,6 @@ mkYesodDispatch "App" resourcesApp
 main :: IO ()
 main = do 
   static@(Static settings) <- static "static"
-  warp 3000 $ App static
+  warpEnv $ App static
 
 -- vim: ts=2:sw=2:et
