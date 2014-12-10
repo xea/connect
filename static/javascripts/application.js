@@ -21,9 +21,12 @@ $(function() {
 var connectApp = angular.module('connectApp', []);
 
 connectApp.controller('quoteController', function ($scope, $http) {
-	$http.get('wisdom').success(function(data) {
+	$scope.reloadQuote = function() { $http.get('wisdom').success(function(data) {
 		$scope.quotes = data;
-	});
+	})};
+
+	// initial load
+	$scope.reloadQuote();
 });
 
 // vim: sw=2:ts=2:noet
