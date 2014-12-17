@@ -1,18 +1,15 @@
 module Main(main) where
 
-import Handler.Home
-import Handler.Markdown
-import Handler.Javascript
-import Handler.Data
-import Settings.StaticFiles
-import Import
+import Network.HTTP.Client.Conduit (newManager)
+import Yesod
 import Yesod.Static
-
-mkYesodDispatch "App" resourcesApp
+import Dispatch ()
+import Foundation
 
 main :: IO ()
 main = do 
   static@(Static settings) <- static "static"
-  warpEnv $ App static
+  manager <- newManager
+  warpEnv $ App static $ manager
 
 -- vim: ts=2:sw=2:et

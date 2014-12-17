@@ -1,23 +1,13 @@
 module Foundation where
 
+import Network.HTTP.Client.Conduit (Manager)
 import Yesod
-import Yesod.Default.Util
-import Yesod.Form.Jquery
 import Yesod.Static
 
-data App = App { getStatic :: Static }
+data App = App { getStatic :: Static, httpManager :: Manager }
 
 instance Yesod App
 
-{- Yesod routes -}
-mkYesodData "App" [parseRoutes|
-    /               HomeR         GET
-    /markdown       MarkdownR     PUT
-    /data           DataR         GET
-    /wisdom         WisdomR       GET
-    /js/#String     JavascriptR   GET
-    /css/#String    StylesheetR   GET
-    /static         StaticR   Static getStatic
-|]
+mkYesodData "App" $(parseRoutesFile "config/routes")
 
 -- vim: sw=2:ts=2:et
