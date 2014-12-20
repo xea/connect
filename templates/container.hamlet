@@ -1,9 +1,0 @@
-<div .container .ng-cloak ng-controller=quoteController>
-  <div .navbar .navbar-warning>
-    <div .navbar-header>
-      <form .navbar-form .navbar-left>
-        <input #ajax-input .form-control .col-lg-8 type=text autocomplete=off>
-  <div .alert .alert-dismissable .alert-info ng-repeat="quote in quotes">
-    <button .close type=button data-dismiss=alert> x
-    <span #reload-quote .glyphicon .glyphicon-refresh ng-click="reloadQuote()">
-    {{quote}}
