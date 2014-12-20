@@ -1,0 +1,5 @@
+$if null readElems
+    <p> No elements
+$else
+    $forall readelem <- readElems 
+        <p> #{readelem}
