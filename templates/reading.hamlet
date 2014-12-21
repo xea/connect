@@ -1,5 +1,48 @@
-$if null readElems
-    <p> No elements
-$else
-    $forall readelem <- readElems 
-        <p> #{readelem}
+<div .navbar .navbar-warning>
+    <div .navbar-header>
+        <button .navbar-toggle type="button">
+        <a .navbar-brand href="javascript:void(0)">Connect
+<form>
+    <div .form-group>
+        <blockquote>
+            <p>
+                $if null readElems
+                    <p> No elements
+                $else
+                    $forall readelem <- readElems 
+                      #{readelem}
+            <small>Hiragana
+    <div .form-group>
+        <div .input-group .col-lg-8>
+            <input .form-control .input-lg type="text" placeholder="Type your answer here">
+            <span .input-group-btn>
+                <button .btn .btn-primary type="button">Send
+<form .form-horizontal ng-controller="itemManagerController">
+    <fieldset>
+        <legend>Item management
+        <div .form-group>
+            <label .col-lg-2 .control-label for="new-item">New item
+            <div .col-lg-4>
+                <input #new-item .form-control  type="text" placeholder="New item"> 
+        <div .form-group>
+            <label .col-lg-2 .control-label for="new-reading">Readings
+            <div .col-lg-4>
+                <input #new-reading .form-control  type="text" placeholder="Readings"> 
+        <div .form-group>
+            <div .col-lg-10 col-lg-offset-2>
+                <button .btn .btn-primary ng-click="addReadingItem">Submit
+    <table .table .table-striped .table-hover>
+        <thead>
+            <tr>
+                <th>ID
+                <th>Item
+                <th>Readings
+        <tbody>
+            <tr>
+                <td>1
+                <td>女
+                <td>onna, jō
+            <tr>
+                <td>2
+                <td>男
+                <td>otoko

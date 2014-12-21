@@ -1,6 +1,6 @@
 $newline never
 \<!doctype html>
-<html class="no-js" lang="en"> <!--<![endif]-->
+<html class="no-js" lang="en" ng-app="connectApp"> <!--<![endif]-->
     <head>
 
         <title>#{pageTitle pc}

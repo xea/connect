@@ -11,5 +11,6 @@ data ReadingGroup = ReadingGroup { groupElements :: [ReadingElem], groupId :: UU
 availableElements :: [String]
 availableElements = [ "a", "e", "i", "o", "u" ] 
 
+
 readingElements :: StdGen -> [String]
 readingElements gen = map (availableElements !!) $ randomRs (0, length availableElements - 1) gen
