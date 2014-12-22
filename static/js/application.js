@@ -1,22 +1,5 @@
 $(function() {
 	$.material.init();
-
-	/*
-	 $(document).keypress(function(event) { if (event.which == 13) { event.preventDefault(); } });
-	 $(document).on("keyup", function(event) {
-		 if (event.which == 13) {
-			 event.preventDefault();
-		 }
-	 });
-
-	$("#ajax-input").keypress(function(event) {
-		if (event.which == 13) {
-			var url = "/wisdom";
-			var request = {};
-			$.getJSON(url, request, function(response) {
-			});
-		}
-	}); */
 });
 
 var connectApp = angular.module('connectApp', []);
@@ -28,6 +11,16 @@ connectApp.controller('quoteController', function ($scope, $http) {
 
 	// initial load
 	$scope.reloadQuote();
+});
+
+connectApp.controller('readingController', function($scope, $http) {
+	$scope.state = "default";
+	$scope.submitReading = function(reading) {  $http.post('reading', reading).success(function(result) {
+		if (result.result == "ok") {
+		} else {
+
+		}
+	})};
 });
 
 connectApp.controller('itemManagerController', function($scope, $http) {

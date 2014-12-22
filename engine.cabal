@@ -33,6 +33,7 @@ library
                 OverloadedStrings
                 NoImplicitPrelude
                 CPP
+                DeriveGeneric
                 MultiParamTypeClasses
                 TypeFamilies
                 GADTs

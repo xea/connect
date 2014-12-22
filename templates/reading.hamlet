@@ -2,7 +2,7 @@
     <div .navbar-header>
         <button .navbar-toggle type="button">
         <a .navbar-brand href="javascript:void(0)">Connect
-<form>
+<form ng-controller="readingController" novalidate>
     <div .form-group>
         <blockquote>
             <p>
@@ -12,25 +12,32 @@
                     $forall readelem <- readElems 
                       #{readelem}
             <small>Hiragana
-    <div .form-group>
-        <div .input-group .col-lg-8>
-            <input .form-control .input-lg type="text" placeholder="Type your answer here">
-            <span .input-group-btn>
-                <button .btn .btn-primary type="button">Send
+    <div>
+        <div .form-group>
+            <div .input-group .col-lg-8>
+                <input #reading-answer .form-control .input-lg type="text" autocomplete="off" placeholder="Type your answer here" ng-model="reading.readingText">
+                <span .input-group-btn>
+                    <button .btn .btn-primary ng-click="submitReading(reading)">Send
+        <div .form-group>
+            <blockquote>
+                <div .input-group .col-lg-8>
+                    <input #reading-mirror .form-control .input-lg type="text" placeholder="Type your answer here" value="{{ reading.readingText }}">
+                    <span .input-group-btn>
+    <pre> {{ reading | json }}
 <form .form-horizontal ng-controller="itemManagerController">
     <fieldset>
         <legend>Item management
         <div .form-group>
             <label .col-lg-2 .control-label for="new-item">New item
             <div .col-lg-4>
-                <input #new-item .form-control  type="text" placeholder="New item"> 
+                <input #new-item .form-control  type="text" autocomplete="off" placeholder="New item"> 
         <div .form-group>
             <label .col-lg-2 .control-label for="new-reading">Readings
             <div .col-lg-4>
-                <input #new-reading .form-control  type="text" placeholder="Readings"> 
+                <input #new-reading .form-control  type="text" autocomplete="off" placeholder="Readings"> 
         <div .form-group>
             <div .col-lg-10 col-lg-offset-2>
-                <button .btn .btn-primary ng-click="addReadingItem">Submit
+                <button .btn .btn-primary ng-click="addReadingItem()">Submit
     <table .table .table-striped .table-hover>
         <thead>
             <tr>
