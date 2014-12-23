@@ -4,6 +4,17 @@ $(function() {
 
 var connectApp = angular.module('connectApp', []);
 
+connectApp.directive('focusOn', function($timeout) {
+  return function(scope, element, attrs) {
+    scope.$watch(attrs.focusOn, 
+      function (newValue) { 
+        $timeout(function() {
+            newValue && element.focus();
+        });
+      },true);
+  };    
+});
+
 connectApp.controller('quoteController', function ($scope, $http) {
 	$scope.reloadQuote = function() { $http.get('wisdom').success(function(data) {
 		$scope.quotes = data;
@@ -14,13 +25,26 @@ connectApp.controller('quoteController', function ($scope, $http) {
 });
 
 connectApp.controller('readingController', function($scope, $http) {
-	$scope.state = "default";
+	$scope.readingState = "input";
+
+	$scope.isState = function(state) {
+		($scope.readingState == state) 
+	};
+
 	$scope.submitReading = function(reading) {  $http.post('reading', reading).success(function(result) {
 		if (result.result == "ok") {
+			$scope.readingState = "submitOK";
+		} else if (result.result == "warn") {
+			$scope.readingState = "submitWarn";
 		} else {
-
+			$scope.readingState = "submitError";
 		}
 	})};
+
+	$scope.nextReading = function(reading) {
+		reading.readingText = '';
+		$scope.readingState = 'input';
+	};
 });
 
 connectApp.controller('itemManagerController', function($scope, $http) {
