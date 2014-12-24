@@ -8,8 +8,8 @@ import GHC.Generics
 import Import
 import System.Random
 
-data ReadingElem = ReadingElem { symbol :: String, readings :: [String] } deriving (Show, Read)
-data ReadingGroup = ReadingGroup { groupName :: String, groupElements :: [ReadingElem] } deriving (Show, Read)
+data ReadingElem = ReadingElem { symbol :: String, readings :: [ String ] } deriving (Show, Read)
+data ReadingGroup = ReadingGroup { groupName :: String, groupElements :: [ ReadingElem ] } deriving (Show, Read)
 data ReadingChallenge = ReadingChallenge { challengeElems :: [ ReadingElem ] } deriving (Show, Read)
 data Reading = Reading { readingText :: String } deriving (Show, Generic)
 
@@ -18,9 +18,9 @@ instance ToJSON Reading
 
 -- data definition
 allGroups :: [ ReadingGroup ]
-allGroups = [ ReadingGroup "group1" [ ReadingElem "a" [""], 
-                                      ReadingElem "i" [""],
-                                      ReadingElem "u" [""]],
+allGroups = [ ReadingGroup "group1" [ ReadingElem "a" ["a"], 
+                                      ReadingElem "i" ["i"],
+                                      ReadingElem "u" ["u"]],
               ReadingGroup "group2" [] ]
 
 -- data lookup
@@ -57,11 +57,15 @@ challengeFromSession Nothing = Nothing
 challengeFromSession (Just challenge) = Just (read $ unpack challenge)
 
 -- input handling
-
 checkChallenge :: Maybe ReadingChallenge -> Reading -> String
-checkChallenge Nothing _ = "error"
+checkChallenge Nothing reading = "error"
 checkChallenge (Just challenge) reading = "ok"
 
+matchesElem :: ReadingElem -> String -> Bool
+matchesElem relem post = any (\reading -> reading == post) $ readings relem
+
+{-
 validateInput :: Maybe Text -> String
-validateInput Nothing = "error"
-validateInput (Just post) = "ok"
+validateInput Nothing = ""
+validateInput (Just post) = unpack post
+-}
