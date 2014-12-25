@@ -1,71 +1,60 @@
 module Core where
 
-import Control.Monad ()
-import Data.List
-import Data.Text as T (pack, unpack)
---import Data.UUID
-import GHC.Generics
 import Import
+import Data.Char (toLower)
 import System.Random
+{- Hash generation -}
+import Crypto.Hash.SHA1 as SHA1
+import Data.ByteString.Char8 as BS (pack, unpack)
+import Text.Printf (printf)
+{- JSON -}
+import Data.Aeson()
+import Data.Text as T (pack, unpack)
+import GHC.Generics
+import qualified Data.ByteString.Lazy as BL()
 
-data ReadingElem = ReadingElem { symbol :: String, readings :: [ String ] } deriving (Show, Read)
-data ReadingGroup = ReadingGroup { groupName :: String, groupElements :: [ ReadingElem ] } deriving (Show, Read)
-data ReadingChallenge = ReadingChallenge { challengeElems :: [ ReadingElem ] } deriving (Show, Read)
-data Reading = Reading { readingText :: String } deriving (Show, Generic)
+{- Type definition -}
+data Request = Request { displayText :: String, acceptedAnswers :: [ String ] } deriving (Show, Read, Generic)
+data Response = Response { responseText :: String } deriving (Show, Read, Generic)
 
-instance FromJSON Reading
-instance ToJSON Reading
 
--- data definition
-allGroups :: [ ReadingGroup ]
-allGroups = [ ReadingGroup "group1" [ ReadingElem "a" ["a"], 
-                                      ReadingElem "i" ["i"],
-                                      ReadingElem "u" ["u"]],
-              ReadingGroup "group2" [] ]
+-- Class of types that can be stored in a Yesod session (i.e. can be converted from/to Text)
+class (Show a, Read a) => SessionObject a where
+  toSession :: a -> Text
+  toSession x = T.pack $ show x
+  fromSession :: Maybe Text -> Maybe a
+  fromSession Nothing = Nothing
+  fromSession (Just x) = Just (read $ T.unpack x)
+  
+instance SessionObject Request
 
--- data lookup
-findGroup :: String -> Maybe ReadingGroup
-findGroup gid = find (\rgroup -> groupName rgroup == gid) allGroups
+instance FromJSON Request
+instance FromJSON Response
 
-findGroups :: String -> [ ReadingGroup ]
-findGroups gid = filter (\rgroup -> groupName rgroup == gid) allGroups
+instance ToJSON Request
+instance ToJSON Response
 
-groupNames :: [ String ]
-groupNames = map groupName allGroups
+{- Save functions -}
+hashS :: String -> String
+hashS input = (BS.unpack $ SHA1.hash $ BS.pack input) >>= printf "%02x"
 
-groupElems :: String -> [ ReadingElem ]
-groupElems gid = case (findGroup gid) of
-                            Nothing -> []
-                            Just rgroup -> groupElements rgroup
+{- Validation functions -}
+checkR :: Maybe Request -> Response -> String
+checkR Nothing _ = "error"
+checkR (Just req) resp = case (validateR req resp) of
+                            True -> "ok"
+                            False -> "error"
 
--- element generatrion
-readingElements :: String -> StdGen -> [ ReadingElem ]
-readingElements gid gen = map (groupElems gid !!) $ randomRs (0, (length $ groupElems gid) - 1) gen
+-- verifies whether the given response matches any of the accepted answers of the request
+validateR :: Request -> Response -> Bool
+validateR req resp = any (matchR $ responseText resp) $ acceptedAnswers req
 
-nextChallenge :: String -> Int -> StdGen -> ReadingChallenge
-nextChallenge gid itemCount gen = ReadingChallenge $ take itemCount $ readingElements gid gen
+-- verifies whether the given two input strings are considered matching
+matchR :: String -> String -> Bool
+matchR expected actual = (unwords . words . (map toLower) $ expected) == (unwords . words . (map toLower) $ actual)
 
-showChallenge :: ReadingChallenge -> String
-showChallenge ch = intercalate " " $ map symbol (challengeElems ch)
+{- Content generation -}
 
--- session management
-challengeToSession :: ReadingChallenge -> Text
-challengeToSession challenge = pack $ show challenge
+nextChallenge :: String -> StdGen -> Request
+nextChallenge groupId gen = Request "this is my stuff" [ "" ]
 
-challengeFromSession :: Maybe Text -> Maybe ReadingChallenge
-challengeFromSession Nothing = Nothing
-challengeFromSession (Just challenge) = Just (read $ unpack challenge)
-
--- input handling
-checkChallenge :: Maybe ReadingChallenge -> Reading -> String
-checkChallenge Nothing reading = "error"
-checkChallenge (Just challenge) reading = "ok"
-
-matchesElem :: ReadingElem -> String -> Bool
-matchesElem relem post = any (\reading -> reading == post) $ readings relem
-
-{-
-validateInput :: Maybe Text -> String
-validateInput Nothing = ""
-validateInput (Just post) = unpack post
--}

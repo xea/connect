@@ -41,10 +41,12 @@ connectApp.controller('readingController', function($scope, $http) {
 		}
 	})};
 
-	$scope.nextReading = function(reading) {
-		reading.readingText = '';
+	$scope.nextReading = function(reading) { $http.get('challenge/next').success(function(result) {
+		reading.responseText = '';
 		$scope.readingState = 'input';
-	};
+		$scope.challengeText = result.displayText;
+	})};
+
 });
 
 connectApp.controller('itemManagerController', function($scope, $http) {

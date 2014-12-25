@@ -7,3 +7,5 @@
 /               HomeR           GET         
 /reading        ReadingR        GET POST
 /reading/item   ReadingItemR    POST
+
+/challenge/next ChallengeR      GET

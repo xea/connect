@@ -109,6 +109,7 @@ instance Yesod App where
         development || level == LevelWarn || level == LevelError
 
     makeLogger = return . appLogger
+    authRoute _ = Just $ AuthR LoginR
 
 instance YesodAuth App where
     type AuthId App = Text

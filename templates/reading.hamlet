@@ -6,30 +6,30 @@
     <div .form-group>
         <blockquote>
             <p>
-                #{showChallenge challenge}
+                {{(challengeText) || "#{displayText challenge}" }}
             <small>Hiragana
     <div>
         <div #reading-answer-panel.form-group ng-show="readingState == 'input'">
             <div .input-group .col-lg-8>
-                <input #reading-answer .form-control .input-lg type="text" autocomplete="off" placeholder="Type your answer here" ng-model="reading.readingText" focus-on="readingState == 'input'">
+                <input #reading-answer .form-control .input-lg type="text" autocomplete="off" placeholder="Type your answer here" ng-model="reading.responseText" focus-on="readingState == 'input'">
                 <span .input-group-btn>
                     <button .btn .btn-primary ng-click="submitReading(reading)">Send
         <div #reading-success-panel .form-group ng-show="readingState == 'submitOK'">
             <div .alert .alert-success>
                 <div .input-group>
-                    &nbsp; {{ reading.readingText }}
+                    &nbsp; {{ reading.responseText }}
                 <span .input-group-btn>
                     <button #gotit-ok .btn .btn-raised .btn-primary focus-on="readingState == 'submitOK'" ng-click="nextReading(reading)">OK
         <div #gotit-err .form-group ng-show="readingState == 'submitError'">
             <div .alert .alert-danger>
                 <div .input-group>
-                    &nbsp; {{ reading.readingText }}
+                    &nbsp; {{ reading.responseText }}
                 <span .input-group-btn>
                     <button #gotit-err .btn .btn-primary focus-on="readingState == 'submitError'" ng-click="nextReading(reading)">OK
         <div #gotit-warn .form-group ng-show="readingState == 'submitWarn'">
             <div .alert .alert-info>
                 <div .input-group>
-                    &nbsp; {{ reading.readingText }}
+                    &nbsp; {{ reading.responseText }}
                 <span .input-group-btn>
                     <button #gotit-warn .btn .btn-primary focus-on="readingState == 'submitWarn'" ng-click="nextReading(reading)">OK
 <form .form-horizontal ng-controller="itemManagerController">
