@@ -28,6 +28,11 @@ postReadingItemR :: Handler Value
 postReadingItemR = do
   return $ object [ "status" .= ("ok" :: String) ]
 
-getChallengeR :: Handler Value
-getChallengeR = do
-  return $ object [ "displayText" .= ("valami" :: String) ]
+getChallengeR :: String -> Handler Value
+getChallengeR groupId = do
+  gen <- lift $ liftIO newStdGen
+  let challenge = nextChallenge "reading-jp" gen
+
+  setSession "challenge" $ toSession challenge
+
+  return $ object [ "displayText" .= (displayText challenge) ]

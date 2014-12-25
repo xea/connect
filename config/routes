@@ -1,11 +1,11 @@
-/static         StaticR         Static      getStatic
-/auth           AuthR           Auth        getAuth
+/static                         StaticR         Static      getStatic
+/auth                           AuthR           Auth        getAuth
+                        
+/favicon.ico                    FaviconR        GET
+/robots.txt                     RobotsR         GET
+                        
+/                               HomeR           GET         
+/reading                        ReadingR        GET POST
+/reading/item                   ReadingItemR    POST
 
-/favicon.ico    FaviconR        GET
-/robots.txt     RobotsR         GET
-
-/               HomeR           GET         
-/reading        ReadingR        GET POST
-/reading/item   ReadingItemR    POST
-
-/challenge/next ChallengeR      GET
+/challenge/#String/next         ChallengeR      GET

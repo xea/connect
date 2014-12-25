@@ -1,6 +1,7 @@
 module Core where
 
 import Import
+import Content
 import Data.Char (toLower)
 import System.Random
 {- Hash generation -}
@@ -30,7 +31,6 @@ instance SessionObject Request
 
 instance FromJSON Request
 instance FromJSON Response
-
 instance ToJSON Request
 instance ToJSON Response
 
@@ -56,5 +56,5 @@ matchR expected actual = (unwords . words . (map toLower) $ expected) == (unword
 {- Content generation -}
 
 nextChallenge :: String -> StdGen -> Request
-nextChallenge groupId gen = Request "this is my stuff" [ "" ]
+nextChallenge ref gen = Request question answers where (question, answers) = generateContent ref gen
 
