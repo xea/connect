@@ -9,3 +9,4 @@
 /reading/item                   ReadingItemR    POST
 
 /challenge/#String/next         ChallengeR      GET
+/item/#String                   ItemR           POST

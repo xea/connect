@@ -50,7 +50,9 @@ connectApp.controller('readingController', function($scope, $http) {
 });
 
 connectApp.controller('itemManagerController', function($scope, $http) {
-	$scope.addReadingItem = function() { $http.post('reading/item', { alma: 123 }).success(function(data) {
+	$scope.addReadingItem = function(item) { 
+		item.answers = item.answers.trim().split(";");
+		$http.post('item/reading-jp', item).success(function(data) {
 	})};
 });
 

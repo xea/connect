@@ -39,3 +39,12 @@ getChallengeR groupId = do
   setSession "challenge" $ toSession challenge
 
   return $ object [ "displayText" .= (displayText challenge) ]
+
+postItemR :: String -> Handler Value
+postItemR ref = do
+  collection <- lift $ liftIO loadCollectionIO
+  item <- requireJsonBody :: Handler Item
+
+  liftIO $ appendItem ref collection item
+
+  return $ object [ "result" .= ("valami" :: String) ]

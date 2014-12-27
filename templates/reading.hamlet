@@ -38,14 +38,14 @@
         <div .form-group>
             <label .col-lg-2 .control-label for="new-item">New item
             <div .col-lg-4>
-                <input #new-item .form-control  type="text" autocomplete="off" placeholder="New item">
+                <input #new-item .form-control  type="text" autocomplete="off" placeholder="New item" ng-model="item.displayText">
         <div .form-group>
             <label .col-lg-2 .control-label for="new-reading">Readings
             <div .col-lg-4>
-                <input #new-reading .form-control  type="text" autocomplete="off" placeholder="Readings">
+                <input #new-reading .form-control  type="text" autocomplete="off" placeholder="Readings" ng-model="item.answers">
         <div .form-group>
             <div .col-lg-10 col-lg-offset-2>
-                <button .btn .btn-primary ng-click="addReadingItem()">Submit
+                <button .btn .btn-primary ng-click="addReadingItem(item)">Submit
     <table .table .table-striped .table-hover>
         <thead>
             <tr>

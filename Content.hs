@@ -1,10 +1,12 @@
-module Content(Collection, generateContent, loadCollectionIO) where
+module Content(Collection, Item, generateContent, loadCollectionIO, appendItem) where
 
 import Import
-import Data.Aeson(encode,decode)
+import Data.Aeson(decode, decodeStrict)
+import Data.Aeson.Encode.Pretty(encodePretty)
 import Data.List (find)
 import System.Random
 import GHC.Generics
+import qualified Data.ByteString as BS(readFile, writeFile, ByteString)
 import qualified Data.ByteString.Lazy as BL(readFile, writeFile, ByteString)
 
 data Item = Item { displayText :: String, answers :: [ String ] } deriving (Show, Read, Generic)
@@ -23,22 +25,25 @@ collectionPath :: FilePath
 collectionPath = "collection.json"
 
 saveCollection :: Collection -> IO ()
-saveCollection collection = BL.writeFile collectionPath $ encode collection
+saveCollection collection = BL.writeFile collectionPath $ encodePretty collection
 
-loadCollectionFile :: IO BL.ByteString
-loadCollectionFile = BL.readFile collectionPath
+--loadCollectionFile :: IO BS.ByteString
+--loadCollectionFile = BS.readFile collectionPath
 
 generateContent :: String -> StdGen -> Collection -> (String, [ String ])
 generateContent ref gen coll = transformI $ (randomEs gen $ groupItems(findGroup coll ref)) !! 0
 
 loadCollectionIO :: IO Collection
 loadCollectionIO = do
-  collection <- loadCollectionFile
-  return $ resolveCollection $ decode collection
+  collectionData <- BS.readFile collectionPath
+  return $ resolveCollection $ decodeStrict collectionData
 
 resolveCollection :: Maybe Collection -> Collection
 resolveCollection Nothing = Collection []
 resolveCollection (Just coll) = coll
+
+appendItem :: String -> Collection -> Item -> IO ()
+appendItem ref coll item = saveCollection coll 
 
 findGroup :: Collection -> String -> Maybe Group
 findGroup coll ref = find (\g -> ref == groupId g) $ collectionGroups coll
