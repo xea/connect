@@ -45,6 +45,6 @@ postItemR ref = do
   collection <- lift $ liftIO loadCollectionIO
   item <- requireJsonBody :: Handler Item
 
-  liftIO $ appendItem ref collection item
+  liftIO $ saveCollection $ appendItem ref collection item
 
   return $ object [ "result" .= ("valami" :: String) ]

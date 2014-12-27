@@ -1,4 +1,9 @@
-module Content(Collection, Item, generateContent, loadCollectionIO, appendItem) where
+module Content (Collection, 
+                Item, 
+                generateContent, 
+                loadCollectionIO, 
+                saveCollection, 
+                appendItem) where
 
 import Import
 import Data.Aeson(decode, decodeStrict)
@@ -27,9 +32,6 @@ collectionPath = "collection.json"
 saveCollection :: Collection -> IO ()
 saveCollection collection = BL.writeFile collectionPath $ encodePretty collection
 
---loadCollectionFile :: IO BS.ByteString
---loadCollectionFile = BS.readFile collectionPath
-
 generateContent :: String -> StdGen -> Collection -> (String, [ String ])
 generateContent ref gen coll = transformI $ (randomEs gen $ groupItems(findGroup coll ref)) !! 0
 
@@ -41,9 +43,6 @@ loadCollectionIO = do
 resolveCollection :: Maybe Collection -> Collection
 resolveCollection Nothing = Collection []
 resolveCollection (Just coll) = coll
-
-appendItem :: String -> Collection -> Item -> IO ()
-appendItem ref coll item = saveCollection coll 
 
 findGroup :: Collection -> String -> Maybe Group
 findGroup coll ref = find (\g -> ref == groupId g) $ collectionGroups coll
@@ -58,3 +57,15 @@ randomEs gen items = map (items !!) $ randomRs (0, length items - 1) gen
 transformI :: Item -> (String, [ String ])
 transformI item = (displayText item, answers item)
 
+-- tree manipulation
+
+appendItem :: String -> Collection -> Item -> Collection
+appendItem ref coll item = Collection $ map (\g -> appendItemC g ref item) $ collectionGroups coll 
+
+appendItemC :: Group -> String -> Item -> Group
+appendItemC gr ref item
+  | groupId gr == ref = appendItemG gr item
+  | otherwise = gr
+
+appendItemG :: Group -> Item -> Group
+appendItemG gr item = Group (groupId gr) (item : items gr)

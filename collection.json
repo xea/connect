@@ -4,6 +4,12 @@
             "items": [
                 {
                     "answers": [
+                        "korte"
+                    ],
+                    "displayText": "alma"
+                },
+                {
+                    "answers": [
                         "a"
                     ],
                     "displayText": "あ"
