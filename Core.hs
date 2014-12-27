@@ -55,6 +55,6 @@ matchR expected actual = (unwords . words . (map toLower) $ expected) == (unword
 
 {- Content generation -}
 
-nextChallenge :: String -> StdGen -> Request
-nextChallenge ref gen = Request question answers where (question, answers) = generateContent ref gen
+nextChallenge :: String -> StdGen -> Collection -> Request
+nextChallenge ref gen coll = Request question answers where (question, answers) = generateContent ref gen coll
 

@@ -1,6 +1,7 @@
 module Handler.Reading where
 
 import Import
+import Content
 import Core
 import System.Random
 import Yesod.Auth
@@ -11,7 +12,8 @@ getReadingR = do
   authId <- requireAuthId
   defaultLayout $ do
     gen <- lift $ liftIO newStdGen
-    let challenge = nextChallenge "reading-jp" gen 
+    collection <- lift $ liftIO loadCollectionIO
+    let challenge = nextChallenge "reading-jp" gen collection
 
     setSession "challenge" $ toSession challenge
 
@@ -31,7 +33,8 @@ postReadingItemR = do
 getChallengeR :: String -> Handler Value
 getChallengeR groupId = do
   gen <- lift $ liftIO newStdGen
-  let challenge = nextChallenge "reading-jp" gen
+  collection <- lift $ liftIO loadCollectionIO
+  let challenge = nextChallenge "reading-jp" gen collection
 
   setSession "challenge" $ toSession challenge
 

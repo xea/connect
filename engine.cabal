@@ -71,6 +71,7 @@ library
                  , wai-logger                    >= 2.2        && < 2.3
                  , random
                  , cryptohash
+                 , transformers
 
     -- see https://github.com/yesodweb/yesod/issues/814
     if !os(windows)
