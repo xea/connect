@@ -38,7 +38,7 @@
         <div .form-group>
             <label .col-lg-2 .control-label for="new-item">New item
             <div .col-lg-4>
-                <input #new-item .form-control  type="text" autocomplete="off" placeholder="New item" ng-model="item.displayText">
+                <input #new-item .form-control  type="text" autocomplete="off" placeholder="New item" focus-on="state == 'input'" ng-model="item.displayText">
         <div .form-group>
             <label .col-lg-2 .control-label for="new-reading">Readings
             <div .col-lg-4>
@@ -53,11 +53,7 @@
                 <th>Item
                 <th>Readings
         <tbody>
-            <tr>
-                <td>1
-                <td>女
-                <td>onna, jō
-            <tr>
-                <td>2
-                <td>男
-                <td>otoko
+            <tr ng-repeat="groupItem in groupItems">
+                <td>-
+                <td>{{ groupItem.displayText || "" }}
+                <td>{{ groupItem.answers || "" }}

@@ -4,9 +4,28 @@
             "items": [
                 {
                     "answers": [
-                        "korte"
+                        "te"
                     ],
-                    "displayText": "alma"
+                    "displayText": "て"
+                },
+                {
+                    "answers": [
+                        "ti",
+                        " chi"
+                    ],
+                    "displayText": "ち"
+                },
+                {
+                    "answers": [
+                        "ta"
+                    ],
+                    "displayText": "た"
+                },
+                {
+                    "answers": [
+                        "to"
+                    ],
+                    "displayText": "と"
                 },
                 {
                     "answers": [

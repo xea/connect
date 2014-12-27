@@ -3,16 +3,18 @@ module Content (Collection,
                 generateContent, 
                 loadCollectionIO, 
                 saveCollection, 
-                appendItem) where
+                appendItem,
+                groupItems,
+                findGroup) where
 
 import Import
-import Data.Aeson(decode, decodeStrict)
+import Data.Aeson(decodeStrict)
 import Data.Aeson.Encode.Pretty(encodePretty)
 import Data.List (find)
 import System.Random
 import GHC.Generics
-import qualified Data.ByteString as BS(readFile, writeFile, ByteString)
-import qualified Data.ByteString.Lazy as BL(readFile, writeFile, ByteString)
+import qualified Data.ByteString as BS(readFile)
+import qualified Data.ByteString.Lazy as BL(writeFile)
 
 data Item = Item { displayText :: String, answers :: [ String ] } deriving (Show, Read, Generic)
 data Group = Group { groupId :: String, items :: [ Item ] } deriving (Show, Read, Generic)
@@ -51,9 +53,11 @@ groupItems :: Maybe Group -> [ Item ]
 groupItems Nothing = []
 groupItems (Just group) = items group
 
+-- | Generates a random stream of elements of the given set of items
 randomEs :: StdGen -> [ Item ] -> [ Item ]
-randomEs gen items = map (items !!) $ randomRs (0, length items - 1) gen
+randomEs gen gitems = map (gitems !!) $ randomRs (0, length gitems - 1) gen
 
+-- | Transforms an Item into a displayable tuple of display string and it's possible answers
 transformI :: Item -> (String, [ String ])
 transformI item = (displayText item, answers item)
 
@@ -64,8 +68,6 @@ appendItem ref coll item = Collection $ map (\g -> appendItemC g ref item) $ col
 
 appendItemC :: Group -> String -> Item -> Group
 appendItemC gr ref item
-  | groupId gr == ref = appendItemG gr item
+  | groupId gr == ref = Group (groupId gr) (item : items gr)
   | otherwise = gr
 
-appendItemG :: Group -> Item -> Group
-appendItemG gr item = Group (groupId gr) (item : items gr)

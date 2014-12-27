@@ -50,10 +50,24 @@ connectApp.controller('readingController', function($scope, $http) {
 });
 
 connectApp.controller('itemManagerController', function($scope, $http) {
+	$scope.state = "default";
+
 	$scope.addReadingItem = function(item) { 
+		$scope.state = "adding";
 		item.answers = item.answers.trim().split(";");
 		$http.post('item/reading-jp', item).success(function(data) {
+			$scope.item.displayText = "";
+			$scope.item.answers = "";
+			$scope.state = "input";
+			$scope.getGroupItems();
+		}
+	)};
+	
+	$scope.getGroupItems = function() { $http.get('item/reading-jp').success(function(result) {
+		$scope.groupItems = result.items;
 	})};
+
+	$scope.getGroupItems();
 });
 
 // vim: sw=2:ts=2:noet

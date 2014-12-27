@@ -40,6 +40,11 @@ getChallengeR groupId = do
 
   return $ object [ "displayText" .= (displayText challenge) ]
 
+getItemR :: String -> Handler Value
+getItemR ref = do
+  collection <- lift $ liftIO loadCollectionIO
+  return $ object [ "items" .= (groupItems $ findGroup collection ref) ]
+
 postItemR :: String -> Handler Value
 postItemR ref = do
   collection <- lift $ liftIO loadCollectionIO
