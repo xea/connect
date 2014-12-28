@@ -1,5 +1,5 @@
-name:              engine
-version:           0.0.0
+name:              connect
+version:           0.1.0
 cabal-version:     >= 1.8
 build-type:        Simple
 
@@ -19,9 +19,6 @@ library
                      Settings.StaticFiles
                      Settings.Development
                      Handler.Home
-                     Handler.Reading
-                     Core
-                     Content
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
