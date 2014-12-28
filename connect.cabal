@@ -18,6 +18,7 @@ library
                      Settings
                      Settings.StaticFiles
                      Settings.Development
+                     Connect.Core
                      Handler.Home
 
     if flag(dev) || flag(library-only)
