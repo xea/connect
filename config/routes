@@ -5,8 +5,3 @@
 /robots.txt                     RobotsR         GET
                         
 /                               HomeR           GET         
-/reading                        ReadingR        GET POST
-/reading/item                   ReadingItemR    POST
-
-/challenge/#String/next         ChallengeR      GET
-/item/#String                   ItemR           GET POST
