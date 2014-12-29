@@ -22,6 +22,7 @@ library
                      Connect.Store
                      Connect.Generator
                      Handler.Home
+                     Handler.Course
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
