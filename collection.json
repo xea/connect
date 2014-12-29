@@ -1,64 +1,76 @@
 {
-    "collectionGroups": [
+    "tag": "Collection",
+    "collectionElems": [
         {
-            "items": [
+            "tag": "Group",
+            "groupItems": [
                 {
-                    "answers": [
-                        "te"
+                    "tag": "Group",
+                    "groupItems": [
+                        {
+                            "tag": "Group",
+                            "groupItems": [
+                                {
+                                    "answers": [],
+                                    "tag": "Item",
+                                    "itemText": "A"
+                                },
+                                {
+                                    "answers": [],
+                                    "tag": "Item",
+                                    "itemText": "E"
+                                },
+                                {
+                                    "answers": [],
+                                    "tag": "Item",
+                                    "itemText": "I"
+                                }
+                            ],
+                            "groupId": "Vowels"
+                        },
+                        {
+                            "tag": "Group",
+                            "groupItems": [
+                                {
+                                    "answers": [],
+                                    "tag": "Item",
+                                    "itemText": "K"
+                                },
+                                {
+                                    "answers": [],
+                                    "tag": "Item",
+                                    "itemText": "L"
+                                }
+                            ],
+                            "groupId": "Consonants"
+                        }
                     ],
-                    "displayText": "て"
-                },
-                {
-                    "answers": [
-                        "ti",
-                        " chi"
-                    ],
-                    "displayText": "ち"
-                },
-                {
-                    "answers": [
-                        "ta"
-                    ],
-                    "displayText": "た"
-                },
-                {
-                    "answers": [
-                        "to"
-                    ],
-                    "displayText": "と"
-                },
-                {
-                    "answers": [
-                        "a"
-                    ],
-                    "displayText": "あ"
-                },
-                {
-                    "answers": [
-                        "i"
-                    ],
-                    "displayText": "い"
-                },
-                {
-                    "answers": [
-                        "u"
-                    ],
-                    "displayText": "う"
-                },
-                {
-                    "answers": [
-                        "e"
-                    ],
-                    "displayText": "え"
-                },
-                {
-                    "answers": [
-                        "o"
-                    ],
-                    "displayText": "お"
+                    "groupId": "Reading"
                 }
             ],
-            "groupId": "reading-jp"
+            "groupId": "English"
+        },
+        {
+            "tag": "Group",
+            "groupItems": [
+                {
+                    "tag": "Group",
+                    "groupItems": [
+                        {
+                            "answers": [],
+                            "tag": "Item",
+                            "itemText": "der Tisch"
+                        },
+                        {
+                            "answers": [],
+                            "tag": "Item",
+                            "itemText": "der Mann"
+                        }
+                    ],
+                    "groupId": "Fachte"
+                }
+            ],
+            "groupId": "German"
         }
     ]
 }

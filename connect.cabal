@@ -20,6 +20,7 @@ library
                      Settings.Development
                      Connect.Core
                      Connect.Store
+                     Connect.Generator
                      Handler.Home
 
     if flag(dev) || flag(library-only)
