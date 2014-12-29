@@ -19,6 +19,7 @@ library
                      Settings.StaticFiles
                      Settings.Development
                      Connect.Core
+                     Connect.Store
                      Handler.Home
 
     if flag(dev) || flag(library-only)
