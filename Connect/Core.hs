@@ -39,6 +39,10 @@ lookupRef ref cgr@(Group{ groupId = gid, nodeChildren = git })
 lookupRef ref (Collection { nodeChildren = celems }) = foldl max Nothing $ map (lookupRef ref) celems
 lookupRef _ _ = Nothing
 
+-- 
+--  TEST DATA
+--
+
 testData :: Node
 testData = Collection [  
              Group "English" [

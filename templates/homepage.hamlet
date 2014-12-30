@@ -8,4 +8,4 @@ $nothing
 <div ng-controller="courseController">
     <ul>
         <li ng-repeat="course in courses">
-            <b>{{ course || "" }}
+            <a href="/course/{{ course[1] }}">{{ course[0] || "" }}

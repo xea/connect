@@ -21,6 +21,7 @@ library
                      Connect.Core
                      Connect.Store
                      Connect.Generator
+                     Connect.Util
                      Handler.Home
                      Handler.Course
 
