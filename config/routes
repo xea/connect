@@ -6,3 +6,4 @@
                         
 /                               HomeR           GET         
 /course                         CoursesR        GET
+/course/#String                 CourseR         GET

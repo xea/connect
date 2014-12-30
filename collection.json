@@ -1,45 +1,50 @@
 {
     "tag": "Collection",
-    "collectionElems": [
+    "nodeChildren": [
         {
             "tag": "Group",
-            "groupItems": [
+            "nodeChildren": [
                 {
                     "tag": "Group",
-                    "groupItems": [
+                    "nodeChildren": [
                         {
-                            "tag": "Group",
+                            "tag": "ContentGroup",
                             "groupItems": [
                                 {
-                                    "answers": [],
-                                    "tag": "Item",
-                                    "itemText": "A"
+                                    "answers": [
+                                        "a"
+                                    ],
+                                    "displayText": "A"
                                 },
                                 {
-                                    "answers": [],
-                                    "tag": "Item",
-                                    "itemText": "E"
+                                    "answers": [
+                                        "e"
+                                    ],
+                                    "displayText": "E"
                                 },
                                 {
-                                    "answers": [],
-                                    "tag": "Item",
-                                    "itemText": "I"
+                                    "answers": [
+                                        "i"
+                                    ],
+                                    "displayText": "I"
                                 }
                             ],
                             "groupId": "Vowels"
                         },
                         {
-                            "tag": "Group",
+                            "tag": "ContentGroup",
                             "groupItems": [
                                 {
-                                    "answers": [],
-                                    "tag": "Item",
-                                    "itemText": "K"
+                                    "answers": [
+                                        "b"
+                                    ],
+                                    "displayText": "B"
                                 },
                                 {
-                                    "answers": [],
-                                    "tag": "Item",
-                                    "itemText": "L"
+                                    "answers": [
+                                        "c"
+                                    ],
+                                    "displayText": "C"
                                 }
                             ],
                             "groupId": "Consonants"
@@ -52,22 +57,36 @@
         },
         {
             "tag": "Group",
-            "groupItems": [
+            "nodeChildren": [
                 {
                     "tag": "Group",
-                    "groupItems": [
+                    "nodeChildren": [
                         {
-                            "answers": [],
-                            "tag": "Item",
-                            "itemText": "der Tisch"
-                        },
-                        {
-                            "answers": [],
-                            "tag": "Item",
-                            "itemText": "der Mann"
+                            "tag": "ContentGroup",
+                            "groupItems": [
+                                {
+                                    "answers": [
+                                        "red"
+                                    ],
+                                    "displayText": "rot"
+                                },
+                                {
+                                    "answers": [
+                                        "green"
+                                    ],
+                                    "displayText": "grün"
+                                },
+                                {
+                                    "answers": [
+                                        "yellow"
+                                    ],
+                                    "displayText": "gelb"
+                                }
+                            ],
+                            "groupId": "Farbe"
                         }
                     ],
-                    "groupId": "Fachte"
+                    "groupId": "Vocabulary"
                 }
             ],
             "groupId": "German"

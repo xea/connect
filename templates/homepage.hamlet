@@ -5,3 +5,7 @@ $maybe _ <- maid
 $nothing
     <p>
         <a href=@{AuthR LoginR}>Go to the login page
+<div ng-controller="courseController">
+    <ul>
+        <li ng-repeat="course in courses">
+            <b>{{ course || "" }}

@@ -1,6 +1,6 @@
 {-# LANGUAGE CPP #-}
 {-# LANGUAGE PackageImports #-}
-import "engine" Application (getApplicationDev)
+import "connect" Application (getApplicationDev)
 import Network.Wai.Handler.Warp
     (runSettings, defaultSettings, setPort)
 import Control.Concurrent (forkIO)

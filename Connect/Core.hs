@@ -12,15 +12,21 @@ data Item = Item { displayText :: String, answers :: [ String ] } deriving (Show
 
 class Browsable a where
   findI :: a -> [ Item ]
+  children :: a -> [ Node ]
 
 instance Browsable Node where
   findI (Collection c) = concat $ map (findI) c
   findI (Group _ gc) = concat $ map (findI) $ gc
   findI (ContentGroup _ git) = git
+  children (Collection c) = c
+  children (Group _ c) = c
+  children _ = []
 
 instance (Browsable a) => Browsable (Maybe a) where
   findI Nothing = []
   findI (Just a) = findI a
+  children Nothing = []
+  children (Just a) = children a
 
 -- | A "User" represents a real user of the software
 data User = User { userEmail :: String } deriving (Show, Read, Generic)

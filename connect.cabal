@@ -79,14 +79,14 @@ library
     if !os(windows)
         build-depends: unix
 
-executable         engine
+executable         connect
     if flag(library-only)
         Buildable: False
 
     main-is:           main.hs
     hs-source-dirs:    app
     build-depends:     base
-                     , engine
+                     , connect
                      , yesod
 
     ghc-options:       -threaded -O2 -rtsopts -with-rtsopts=-N
@@ -114,7 +114,7 @@ test-suite test
                 TupleSections
 
     build-depends: base
-                 , engine
+                 , connect
                  , yesod-test >= 1.4 && < 1.5
                  , yesod-core
                  , yesod

@@ -70,4 +70,12 @@ connectApp.controller('itemManagerController', function($scope, $http) {
 	$scope.getGroupItems();
 });
 
+connectApp.controller('courseController', function($scope, $http) {
+	$scope.refreshCourses = function() { $http.get('course').success(function(response) {
+		$scope.courses = response.courses;
+	})};
+
+	$scope.refreshCourses();
+});
+
 // vim: sw=2:ts=2:noet
