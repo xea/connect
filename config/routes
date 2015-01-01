@@ -5,5 +5,11 @@
 /robots.txt                     RobotsR         GET
                         
 /                               HomeR           GET         
-/course                         CoursesR        GET
 /course/#String                 CourseR         GET
+/skill/#String                  SkillR          GET
+/lesson/#String                 LessonR         GET
+/challenge/#String              ChallengeR      GET
+
+/api/course                     CoursesR        GET
+/api/course/#String             CourseSkillsR   GET
+/api/skill/#String              SkillDetailsR   GET

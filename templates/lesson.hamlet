@@ -1,0 +1,5 @@
+<div .navbar .navbar-warning>
+    <div .navbar-header>
+        <button .navbar-toggle type="button">
+        <a .navbar-brand href="javascript:void(0)">Connect
+<a href="/challenge/#{ref}" .btn .btn-info>Begin!

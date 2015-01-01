@@ -70,12 +70,37 @@ connectApp.controller('itemManagerController', function($scope, $http) {
 	$scope.getGroupItems();
 });
 
-connectApp.controller('courseController', function($scope, $http) {
-	$scope.refreshCourses = function() { $http.get('course').success(function(response) {
+connectApp.controller('homeController', function($scope, $http) {
+	$scope.refreshCourses = function() { $http.get('/api/course').success(function(response) {
 		$scope.courses = response.courses;
 	})};
 
 	$scope.refreshCourses();
 });
 
+connectApp.controller('courseController', function($scope, $http) {
+	$scope.init = function(ref) { 
+		$scope.reference = ref; 
+		$scope.getSkills();
+	};
+
+	$scope.getSkills = function() { 
+		$http.get('/api/course/' + $scope.reference).success(function(response) {
+			$scope.skills = response.skills;
+	})};
+
+});
+
+connectApp.controller('skillController', function($scope, $http) {
+	$scope.init = function(ref) { 
+		$scope.reference = ref; 
+		$scope.getLessons();
+	};
+
+	$scope.getLessons = function() { 
+		$http.get('/api/skill/' + $scope.reference).success(function(response) {
+			$scope.lessons = response.lessons;
+	})};
+
+});
 // vim: sw=2:ts=2:noet

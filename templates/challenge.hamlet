@@ -1,0 +1,59 @@
+<div .navbar .navbar-warning>
+    <div .navbar-header>
+        <button .navbar-toggle type="button">
+        <a .navbar-brand href="javascript:void(0)">Connect
+<form ng-controller="readingController" novalidate>
+    <div .form-group>
+        <blockquote>
+            <p>
+                {{(challengeText) || "#{displayText challenge}" }}
+            <small>Hiragana
+    <div>
+        <div #reading-answer-panel.form-group ng-show="readingState == 'input'">
+            <div .input-group .col-lg-8>
+                <input #reading-answer .form-control .input-lg type="text" autocomplete="off" placeholder="Type your answer here" ng-model="reading.responseText" focus-on="readingState == 'input'">
+                <span .input-group-btn>
+                    <button .btn .btn-primary ng-click="submitReading(reading)">Send
+        <div #reading-success-panel .form-group ng-show="readingState == 'submitOK'">
+            <div .alert .alert-success>
+                <div .input-group>
+                    &nbsp; {{ reading.responseText }}
+                <span .input-group-btn>
+                    <button #gotit-ok .btn .btn-raised .btn-primary focus-on="readingState == 'submitOK'" ng-click="nextReading(reading)">OK
+        <div #gotit-err .form-group ng-show="readingState == 'submitError'">
+            <div .alert .alert-danger>
+                <div .input-group>
+                    &nbsp; {{ reading.responseText }}
+                <span .input-group-btn>
+                    <button #gotit-err .btn .btn-primary focus-on="readingState == 'submitError'" ng-click="nextReading(reading)">OK
+        <div #gotit-warn .form-group ng-show="readingState == 'submitWarn'">
+            <div .alert .alert-info>
+                <div .input-group>
+                    &nbsp; {{ reading.responseText }}
+                <span .input-group-btn>
+                    <button #gotit-warn .btn .btn-primary focus-on="readingState == 'submitWarn'" ng-click="nextReading(reading)">OK
+<form .form-horizontal ng-controller="itemManagerController">
+    <fieldset>
+        <legend>Item management
+        <div .form-group>
+            <label .col-lg-2 .control-label for="new-item">New item
+            <div .col-lg-4>
+                <input #new-item .form-control  type="text" autocomplete="off" placeholder="New item" focus-on="state == 'input'" ng-model="item.displayText">
+        <div .form-group>
+            <label .col-lg-2 .control-label for="new-reading">Readings
+            <div .col-lg-4>
+                <input #new-reading .form-control  type="text" autocomplete="off" placeholder="Readings" ng-model="item.answers">
+        <div .form-group>
+            <div .col-lg-10 col-lg-offset-2>
+                <button .btn .btn-primary ng-click="addReadingItem(item)">Submit
+    <table .table .table-striped .table-hover>
+        <thead>
+            <tr>
+                <th>ID
+                <th>Item
+                <th>Readings
+        <tbody>
+            <tr ng-repeat="groupItem in groupItems">
+                <td>-
+                <td>{{ groupItem.displayText || "" }}
+                <td>{{ groupItem.answers || "" }}

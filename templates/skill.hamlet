@@ -1,0 +1,7 @@
+<div .navbar .navbar-warning>
+    <div .navbar-header>
+        <button .navbar-toggle type="button">
+        <a .navbar-brand href="javascript:void(0)">Connect
+<div ng-controller="skillController" ng-init="init('#{ref}')">
+    <div ng-repeat="lesson in lessons">
+        <a .btn .btn-info .btn-raised href="/lesson/{{ lesson[1] }}">{{ lesson[0] || "Unnamed lesson" }}

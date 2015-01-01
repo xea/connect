@@ -1,6 +1,7 @@
 module Connect.Util where
 
 import Import
+import Connect.Core
 {- Hash generation -}
 import Crypto.Hash.SHA1 as SHA1
 import Data.ByteString.Char8 as BS (pack, unpack)
@@ -8,7 +9,6 @@ import Data.Text as T (pack, unpack)
 import GHC.Generics
 import Text.Printf (printf)
 
-{- Type definition -}
 data Request = Request { displayText :: String, acceptedAnswers :: [ String ] } deriving (Show, Read, Generic)
 data Response = Response { responseText :: String } deriving (Show, Read, Generic)
 
@@ -24,4 +24,8 @@ instance SessionObject Request
 
 -- Generates hexadecimal string representation of a SHA1 value calculated based on the given input
 hashS :: String -> String
-hashS input = (BS.unpack $ SHA1.hash $ BS.pack input) >>= printf "%02x"
+hashS input = take 8 $ (BS.unpack $ SHA1.hash $ BS.pack input) >>= printf "%02x"
+
+-- Generates a pseudo-unique identifier for an object
+genId :: (Show a) => a -> String
+genId = hashS . show 
