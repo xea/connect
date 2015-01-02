@@ -26,6 +26,9 @@ instance Browsable Node where
   lookupRef ref cgr@(Group gid git)
     | ref == gid = Just cgr
     | otherwise  = foldl max Nothing $ map (lookupRef ref) git
+  lookupRef ref cgr@(ContentGroup gid git)
+    | ref == gid = Just cgr
+    | otherwise  = Nothing
   lookupRef ref (Collection celems) = foldl max Nothing $ map (lookupRef ref) celems
   lookupRef _ _ = Nothing
 

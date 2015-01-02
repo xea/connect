@@ -32,7 +32,7 @@
                     &nbsp; {{ reading.responseText }}
                 <span .input-group-btn>
                     <button #gotit-warn .btn .btn-primary focus-on="readingState == 'submitWarn'" ng-click="nextReading(reading)">OK
-<form .form-horizontal ng-controller="itemManagerController">
+<form .form-horizontal ng-controller="inventoryController" ng-init="init('#{ref}')">
     <fieldset>
         <legend>Item management
         <div .form-group>

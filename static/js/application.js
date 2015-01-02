@@ -53,8 +53,13 @@ connectApp.controller('challengeController', function($scope, $http) {
 
 });
 
-connectApp.controller('itemManagerController', function($scope, $http) {
+connectApp.controller('inventoryController', function($scope, $http) {
 	$scope.state = "default";
+
+	$scope.init = function(ref) {
+		$scope.reference = ref;
+		$scope.getGroupItems();
+	}
 
 	$scope.addReadingItem = function(item) { 
 		$scope.state = "adding";
@@ -67,11 +72,10 @@ connectApp.controller('itemManagerController', function($scope, $http) {
 		}
 	)};
 	
-	$scope.getGroupItems = function() { $http.get('item/reading-jp').success(function(result) {
+	$scope.getGroupItems = function() { $http.get('/api/lesson/' + $scope.reference).success(function(result) {
 		$scope.groupItems = result.items;
 	})};
 
-	$scope.getGroupItems();
 });
 
 connectApp.controller('homeController', function($scope, $http) {

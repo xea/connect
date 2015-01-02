@@ -22,6 +22,7 @@ import Handler.Course
 import Handler.Skill
 import Handler.Lesson
 import Handler.Challenge
+import Handler.Inventory
 import Handler.Debug
 
 -- This line actually creates our YesodDispatch instance. It is the second half
