@@ -1,7 +1,6 @@
 module Connect.Util where
 
 import Import
-import Connect.Core
 {- Hash generation -}
 import Crypto.Hash.SHA1 as SHA1
 import Data.Aeson()

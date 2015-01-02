@@ -10,7 +10,7 @@
 /lesson/#String                 LessonR                 GET
 /challenge/#String              ChallengeR              GET 
         
-/api/course                     CoursesR                GET
+/api/course                     CoursesR                GET POST
 /api/course/#String             CourseSkillsR           GET
 /api/skill/#String              SkillDetailsR           GET
 /api/challenge                  SolveChallengeR         POST

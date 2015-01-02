@@ -3,17 +3,13 @@ module Handler.Course where
 import Import
 import Connect.Core
 import Connect.Store
-import Connect.Util
 --import Yesod.Auth
 
 getCourseR :: String -> Handler Html
 getCourseR ref = do
-  collection <- liftIO $ loadCollection
   defaultLayout $ do
     setTitle "Course"
     $(widgetFile "course")
---2   response <- requireJsonBody :: Handler Response
---  1   maybeChallenge <- lookupSession "challenge"
 
 -- Returns a list of available courses (both display name and reference id) in JSON format
 getCoursesR :: Handler Value

@@ -3,7 +3,6 @@ module Handler.Skill where
 import Import
 import Connect.Core
 import Connect.Store
-import Connect.Util
 --import Yesod.Auth
 
 getSkillR :: String -> Handler Html

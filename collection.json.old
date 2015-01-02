@@ -1,0 +1,102 @@
+{
+    "tag": "Collection",
+    "nodeChildren": [
+        {
+            "tag": "Group",
+            "nodeChildren": [
+                {
+                    "tag": "Group",
+                    "nodeChildren": [
+                        {
+                            "tag": "ContentGroup",
+                            "groupItems": [
+                                {
+                                    "answers": [
+                                        "a"
+                                    ],
+                                    "displayText": "A"
+                                },
+                                {
+                                    "answers": [
+                                        "e"
+                                    ],
+                                    "displayText": "E"
+                                },
+                                {
+                                    "answers": [
+                                        "i"
+                                    ],
+                                    "displayText": "I"
+                                },
+                                {
+                                    "answers": [
+                                        "o",
+                                        " ö"
+                                    ],
+                                    "displayText": "O"
+                                }
+                            ],
+                            "groupId": "Vowels"
+                        },
+                        {
+                            "tag": "ContentGroup",
+                            "groupItems": [
+                                {
+                                    "answers": [
+                                        "b"
+                                    ],
+                                    "displayText": "B"
+                                },
+                                {
+                                    "answers": [
+                                        "c"
+                                    ],
+                                    "displayText": "C"
+                                }
+                            ],
+                            "groupId": "Consonants"
+                        }
+                    ],
+                    "groupId": "Reading"
+                }
+            ],
+            "groupId": "English"
+        },
+        {
+            "tag": "Group",
+            "nodeChildren": [
+                {
+                    "tag": "Group",
+                    "nodeChildren": [
+                        {
+                            "tag": "ContentGroup",
+                            "groupItems": [
+                                {
+                                    "answers": [
+                                        "red"
+                                    ],
+                                    "displayText": "rot"
+                                },
+                                {
+                                    "answers": [
+                                        "green"
+                                    ],
+                                    "displayText": "grün"
+                                },
+                                {
+                                    "answers": [
+                                        "yellow"
+                                    ],
+                                    "displayText": "gelb"
+                                }
+                            ],
+                            "groupId": "Farbe"
+                        }
+                    ],
+                    "groupId": "Vocabulary"
+                }
+            ],
+            "groupId": "German"
+        }
+    ]
+}

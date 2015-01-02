@@ -53,7 +53,7 @@ connectApp.controller('challengeController', function($scope, $http) {
 
 });
 
-connectApp.controller('inventoryController', function($scope, $http) {
+connectApp.controller('inventoryController', ['$scope', '$http', function($scope, $http) {
 	$scope.state = "default";
 
 	$scope.init = function(ref) {
@@ -72,11 +72,18 @@ connectApp.controller('inventoryController', function($scope, $http) {
 		}
 	)};
 	
+	$scope.createCourse = function(course) { 
+		course.tag = "Group";
+		course.nodeChildren = [];
+		$http.post('/api/course', course).success(function(result) {
+			homeController.refreshCourses();
+	})};
+	
 	$scope.getGroupItems = function() { $http.get('/api/lesson/' + $scope.reference).success(function(result) {
 		$scope.groupItems = result.items;
 	})};
 
-});
+}]);
 
 connectApp.controller('homeController', function($scope, $http) {
 	$scope.refreshCourses = function() { $http.get('/api/course').success(function(response) {
