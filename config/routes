@@ -1,17 +1,19 @@
-/static                         StaticR         Static      getStatic
-/auth                           AuthR           Auth        getAuth
-                        
-/favicon.ico                    FaviconR        GET
-/robots.txt                     RobotsR         GET
-                        
-/                               HomeR           GET         
-/course/#String                 CourseR         GET
-/skill/#String                  SkillR          GET
-/lesson/#String                 LessonR         GET
-/challenge/#String              ChallengeR      GET 
+/static                         StaticR                 Static      getStatic
+/auth                           AuthR                   Auth        getAuth
+                                
+/favicon.ico                    FaviconR                GET
+/robots.txt                     RobotsR                 GET
+                                
+/                               HomeR                   GET         
+/course/#String                 CourseR                 GET
+/skill/#String                  SkillR                  GET
+/lesson/#String                 LessonR                 GET
+/challenge/#String              ChallengeR              GET 
+        
+/api/course                     CoursesR                GET
+/api/course/#String             CourseSkillsR           GET
+/api/skill/#String              SkillDetailsR           GET
+/api/challenge/#String          SolveChallengeR         POST
+/api/challenge/#String/next     NextChallengeR          GET
 
-/api/course                     CoursesR        GET
-/api/course/#String             CourseSkillsR   GET
-/api/skill/#String              SkillDetailsR   GET
-/api/challenge/#String          SolveChallengeR POST
-/api/challenge/#String/next     NextChallengeR  GET
+/debug/writeTestData            WriteTestCollectionR    GET

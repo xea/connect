@@ -41,26 +41,3 @@ instance (Browsable a) => Browsable (Maybe a) where
 data User = User { userEmail :: String } deriving (Show, Read, Generic)
 
 -- | The "lookupRef" function attempts to find a "Node" that matches the given reference value in the tree
--- 
---  TEST DATA
---
-
-testData :: Node
-testData = Collection [  
-             Group "English" [
-               Group "Reading" [
-                 ContentGroup "Vowels" [
-                   Item "A" [ "a" ],
-                   Item "E" [ "e" ],
-                   Item "I" [ "i" ] ],
-                 ContentGroup "Consonants" [
-                   Item "B" [ "b" ],
-                   Item "C" [ "c" ] ] ] ],
-             Group "German" [ 
-               Group "Vocabulary" [
-                 ContentGroup "Farbe" [
-                   Item "rot" [ "red" ],
-                   Item "grün" [ "green" ],
-                   Item "gelb" [ "yellow" ]
-                 ] ] ],
-             ContentGroup "" [] ] 

@@ -28,6 +28,7 @@ library
                      Handler.Skill
                      Handler.Lesson
                      Handler.Challenge
+                     Handler.Debug
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT

@@ -13,4 +13,5 @@ randomIs gen gitems = map (gitems !!) $ randomRs (0, length gitems - 1) gen
 
 generateChallenge :: String -> StdGen -> Maybe Node -> Request
 generateChallenge ref gen Nothing = Request "" []
-generateChallenge ref gen (Just coll) = Request "Bli bli" [ "alma" ] 
+generateChallenge ref gen (Just coll) = Request a b where (Item a b) = (randomIs gen $ findI coll ) !! 0
+
