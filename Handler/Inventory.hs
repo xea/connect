@@ -9,3 +9,10 @@ getItemListR ref = do
   collection <- liftIO loadCollection
   return $ object [ "items" .= (findI $ lookupRef ref collection) ]
   
+postItemListR :: String -> Handler Value
+postItemListR ref = do
+  newItem <- requireJsonBody :: Handler Item
+  collection <- liftIO loadCollection
+  liftIO $ saveCollection $ addItem ref newItem collection
+  
+  return $ object [ "result" .= ("ok" :: String) ]

@@ -27,6 +27,13 @@
                                         "i"
                                     ],
                                     "displayText": "I"
+                                },
+                                {
+                                    "answers": [
+                                        "o",
+                                        " ö"
+                                    ],
+                                    "displayText": "O"
                                 }
                             ],
                             "groupId": "Vowels"

@@ -14,7 +14,9 @@ data Item = Item { displayText :: String, answers :: [ String ] } deriving (Show
 class Browsable a where
   findI :: a -> [ Item ]
   children :: a -> [ Node ]
+  -- | The "lookupRef" function attempts to find a "Node" that matches the given reference value in the tree
   lookupRef :: String -> a -> Maybe Node
+  addItem :: String -> Item -> a -> Node
 
 instance Browsable Node where
   findI (Collection c) = concat $ map (findI) c
@@ -31,6 +33,9 @@ instance Browsable Node where
     | otherwise  = Nothing
   lookupRef ref (Collection celems) = foldl max Nothing $ map (lookupRef ref) celems
   lookupRef _ _ = Nothing
+  addItem ref item cgr@(ContentGroup gid git) = if gid == ref then ContentGroup gid (git ++ [ item ]) else cgr
+  addItem ref item (Group gid git) = Group gid $ map (addItem ref item) git
+  addItem ref item (Collection git) = Collection $ map (addItem ref item) git
 
 instance (Browsable a) => Browsable (Maybe a) where
   findI Nothing = []
@@ -39,8 +44,13 @@ instance (Browsable a) => Browsable (Maybe a) where
   children (Just a) = children a
   lookupRef _ Nothing = Nothing
   lookupRef ref (Just a) = lookupRef ref a
+  addItem ref item Nothing = addItem ref item $ Group "" []
+  addItem ref item (Just a) = addItem ref item a
 
 -- | A "User" represents a real user of the software
 data User = User { userEmail :: String } deriving (Show, Read, Generic)
 
--- | The "lookupRef" function attempts to find a "Node" that matches the given reference value in the tree
+addItem' :: String -> Item -> Node -> Node
+addItem' ref item cgr@(ContentGroup gid git) = if gid == ref then ContentGroup gid (git ++ [ item ]) else cgr
+addItem' ref item (Group gid git) = Group gid $ map (addItem ref item) git
+addItem' ref item (Collection git) = Collection $ map (addItem ref item) git

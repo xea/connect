@@ -11,7 +11,7 @@ import Yesod.Auth
 
 getChallengeR :: String -> Handler Html
 getChallengeR ref = do
-  authId <- requireAuthId
+  authId <- maybeAuthId
   collection <- liftIO loadCollection
   gen <- lift $ liftIO newStdGen
 

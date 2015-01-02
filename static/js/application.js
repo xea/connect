@@ -64,7 +64,7 @@ connectApp.controller('inventoryController', function($scope, $http) {
 	$scope.addReadingItem = function(item) { 
 		$scope.state = "adding";
 		item.answers = item.answers.trim().split(";");
-		$http.post('item/reading-jp', item).success(function(data) {
+		$http.post('/api/lesson/' + $scope.reference, item).success(function(data) {
 			$scope.item.displayText = "";
 			$scope.item.answers = "";
 			$scope.state = "input";

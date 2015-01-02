@@ -16,6 +16,6 @@
 /api/challenge/#String          SolveChallengeR         POST
 /api/challenge/#String/next     NextChallengeR          GET
 
-/api/lesson/#String             ItemListR               GET
+/api/lesson/#String             ItemListR               GET POST
 
 /debug/writeTestData            WriteTestCollectionR    GET
