@@ -24,14 +24,18 @@ connectApp.controller('quoteController', function ($scope, $http) {
 	$scope.reloadQuote();
 });
 
-connectApp.controller('readingController', function($scope, $http) {
+connectApp.controller('challengeController', function($scope, $http) {
 	$scope.readingState = "input";
+
+	$scope.init = function(ref) {
+		$scope.reference = ref;
+	};
 
 	$scope.isState = function(state) {
 		($scope.readingState == state) 
 	};
 
-	$scope.submitReading = function(reading) {  $http.post('reading', reading).success(function(result) {
+	$scope.submitReading = function(reading) { $http.post('/api/challenge/' + $scope.reference, reading).success(function(result) {
 		if (result.result == "ok") {
 			$scope.readingState = "submitOK";
 		} else if (result.result == "warn") {
@@ -41,7 +45,7 @@ connectApp.controller('readingController', function($scope, $http) {
 		}
 	})};
 
-	$scope.nextReading = function(reading) { $http.get('challenge/reading-jp/next').success(function(result) {
+	$scope.nextReading = function(reading) { $http.get('/api/challenge/' + $scope.reference + '/next').success(function(result) {
 		$scope.challengeText = result.displayText;
 		$scope.readingState = 'input';
 		reading.responseText = '';

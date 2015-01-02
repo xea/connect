@@ -2,6 +2,7 @@ module Connect.Core where
 
 import Import
 import Data.List (find)
+import Data.Text as T (pack, unpack)
 import GHC.Generics
 
 data Node = Collection { nodeChildren :: [ Node ] } |
@@ -40,14 +41,6 @@ instance (Browsable a) => Browsable (Maybe a) where
 data User = User { userEmail :: String } deriving (Show, Read, Generic)
 
 -- | The "lookupRef" function attempts to find a "Node" that matches the given reference value in the tree
-{-
-lookupRef :: String -> Node -> Maybe Node
-lookupRef ref cgr@(Group{ groupId = gid, nodeChildren = git })
-  | ref == gid = Just cgr
-  | otherwise  = foldl max Nothing $ map (lookupRef ref) git
-lookupRef ref (Collection { nodeChildren = celems }) = foldl max Nothing $ map (lookupRef ref) celems
-lookupRef _ _ = Nothing
--}
 -- 
 --  TEST DATA
 --

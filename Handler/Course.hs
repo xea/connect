@@ -6,11 +6,6 @@ import Connect.Store
 import Connect.Util
 --import Yesod.Auth
 
-getCoursesR :: Handler Value
-getCoursesR = do
-  coll <- liftIO $ loadCollection
-  return $ object [ "courses" .= zip (map groupId $ children coll) (map groupId $ children coll) ]
-
 getCourseR :: String -> Handler Html
 getCourseR ref = do
   collection <- liftIO $ loadCollection
@@ -19,6 +14,12 @@ getCourseR ref = do
     $(widgetFile "course")
 --2   response <- requireJsonBody :: Handler Response
 --  1   maybeChallenge <- lookupSession "challenge"
+
+-- Returns a list of available courses (both display name and reference id) in JSON format
+getCoursesR :: Handler Value
+getCoursesR = do
+  coll <- liftIO $ loadCollection
+  return $ object [ "courses" .= zip (map groupId $ children coll) (map groupId $ children coll) ]
 
 getCourseSkillsR :: String -> Handler Value
 getCourseSkillsR ref = do

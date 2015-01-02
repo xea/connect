@@ -2,11 +2,11 @@
     <div .navbar-header>
         <button .navbar-toggle type="button">
         <a .navbar-brand href="javascript:void(0)">Connect
-<form ng-controller="readingController" novalidate>
+<form ng-controller="challengeController" ng-init="init('#{ref}')" novalidate>
     <div .form-group>
         <blockquote>
             <p>
-                {{(challengeText) || "#{displayText challenge}" }}
+                {{(challengeText) || "#{requestText challenge}" }}
             <small>Hiragana
     <div>
         <div #reading-answer-panel.form-group ng-show="readingState == 'input'">

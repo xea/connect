@@ -22,6 +22,7 @@ library
                      Connect.Store
                      Connect.Generator
                      Connect.Util
+                     Connect.Validator
                      Handler.Home
                      Handler.Course
                      Handler.Skill
