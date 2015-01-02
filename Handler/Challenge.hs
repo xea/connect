@@ -7,11 +7,9 @@ import Connect.Store
 import Connect.Util
 import Connect.Validator
 import System.Random
-import Yesod.Auth
 
 getChallengeR :: String -> Handler Html
 getChallengeR ref = do
-  authId <- maybeAuthId
   collection <- liftIO loadCollection
   gen <- lift $ liftIO newStdGen
 
@@ -22,8 +20,8 @@ getChallengeR ref = do
     setTitle "Challenge"
     $(widgetFile "challenge")
 
-postSolveChallengeR :: String -> Handler Value
-postSolveChallengeR ref = do
+postSolveChallengeR :: Handler Value
+postSolveChallengeR = do
   response <- requireJsonBody :: Handler Response
   maybeChallenge <- lookupSession "challenge"
   return $ object [ "result" .= checkR (fromSession maybeChallenge) response ]

@@ -35,7 +35,7 @@ connectApp.controller('challengeController', function($scope, $http) {
 		($scope.readingState == state) 
 	};
 
-	$scope.submitReading = function(reading) { $http.post('/api/challenge/' + $scope.reference, reading).success(function(result) {
+	$scope.submitReading = function(reading) { $http.post('/api/challenge', reading).success(function(result) {
 		if (result.result == "ok") {
 			$scope.readingState = "submitOK";
 		} else if (result.result == "warn") {

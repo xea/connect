@@ -50,7 +50,3 @@ instance (Browsable a) => Browsable (Maybe a) where
 -- | A "User" represents a real user of the software
 data User = User { userEmail :: String } deriving (Show, Read, Generic)
 
-addItem' :: String -> Item -> Node -> Node
-addItem' ref item cgr@(ContentGroup gid git) = if gid == ref then ContentGroup gid (git ++ [ item ]) else cgr
-addItem' ref item (Group gid git) = Group gid $ map (addItem ref item) git
-addItem' ref item (Collection git) = Collection $ map (addItem ref item) git

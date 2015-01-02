@@ -4,6 +4,8 @@ import Import
 import Connect.Core
 import Connect.Store
 
+-- | Returns a list of items associated with the referred content group. If the
+-- referred content group does not exist then an empty list will be returned.
 getItemListR :: String -> Handler Value
 getItemListR ref = do
   collection <- liftIO loadCollection
