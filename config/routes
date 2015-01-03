@@ -12,7 +12,7 @@
         
 /api/course                     CoursesR                GET POST
 /api/course/#String             CourseSkillsR           GET
-/api/skill/#String              SkillDetailsR           GET
+/api/skill/#String              SkillDetailsR           GET POST
 /api/challenge                  SolveChallengeR         POST
 /api/challenge/#String/next     NextChallengeR          GET
 

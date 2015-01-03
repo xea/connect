@@ -18,6 +18,7 @@ class Browsable a where
   lookupRef :: String -> a -> Maybe Node
   addItem :: String -> Item -> a -> Node
   addNode :: Node -> a -> Node
+  addNodeR :: String -> Node -> a -> Node
 
 instance Browsable Node where
   findI (Collection c) = concat $ map (findI) c
@@ -45,6 +46,10 @@ instance Browsable Node where
   addNode newNode (Group gid git) = Group gid (git ++ [ newNode ])
   addNode newNode cgr@(ContentGroup _ _) = cgr
 
+  addNodeR ref item (Collection git) = Collection $ map (addNodeR ref item) git
+  addNodeR ref item (Group gid git) = if gid == ref then Group gid (git ++ [ item ]) else Group gid $ map (addNodeR ref item) git
+  addNodeR ref item cgr@(ContentGroup _ _) = cgr
+
 instance (Browsable a) => Browsable (Maybe a) where
   findI Nothing = []
   findI (Just a) = findI a
@@ -56,6 +61,8 @@ instance (Browsable a) => Browsable (Maybe a) where
   addItem ref item (Just a) = addItem ref item a
   addNode newNode Nothing = Collection [ newNode ]
   addNode newNode (Just a) = addNode newNode a
+  addNodeR _ node Nothing = Collection [ node ]
+  addNodeR ref node (Just b) = addNodeR ref node b
 
 -- | A "User" represents a real user of the software
 data User = User { userEmail :: String } deriving (Show, Read, Generic)

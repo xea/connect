@@ -78,6 +78,18 @@ connectApp.controller('inventoryController', ['$scope', '$http', function($scope
 		$http.post('/api/course', course).success(function(result) {
 			homeController.refreshCourses();
 	})};
+
+	$scope.createSkill = function(skill) { 
+		skill.tag = "Group";
+		skill.nodeChildren = [];
+		$http.post('/api/skill/' + $scope.reference, skill).success(function(result) {
+	})};
+
+	$scope.createLesson = function(lesson) { 
+		lesson.tag = "Group";
+		lesson.nodeChildren = [];
+		$http.post('/api/lesson/' + $scope.reference, skill).success(function(result) {
+	})};
 	
 	$scope.getGroupItems = function() { $http.get('/api/lesson/' + $scope.reference).success(function(result) {
 		$scope.groupItems = result.items;

@@ -26,3 +26,12 @@ postCoursesR = do
   liftIO $ saveCollection $ addNode newCourse collection
   return $ object [ "result" .= ("ok" :: String) ]
 
+postNodeR :: String -> Handler Value
+postNodeR ref = do
+  newNode <- requireJsonBody :: Handler Node
+  collection <- liftIO loadCollection
+  liftIO $ saveCollection $ addNodeR ref newNode collection
+  return $ object [ "result" .= ("ok" :: String) ]
+
+postSkillDetailsR :: String -> Handler Value
+postSkillDetailsR = postNodeR
