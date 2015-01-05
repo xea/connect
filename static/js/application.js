@@ -36,7 +36,7 @@ connectApp.controller('challengeController', function($scope, $http) {
 		}
 	})};
 
-	$scope.nextChallenge = function(response) { $http.get('/api/challenge/' + $scope.reference + '/next').success(function(result) {
+	$scope.nextChallenge = function(response) { $http.get('/api/challenge/' + $scope.reference).success(function(result) {
 		$scope.challengeText = result.displayText;
 		$scope.challengeState = 'input';
 		response.responseText = '';
