@@ -115,8 +115,8 @@ instance YesodAuth App where
     type AuthId App = Text
     getAuthId = return . Just . credsIdent
 
-    loginDest _ = HomeR
-    logoutDest _ = HomeR
+    loginDest _ = HomePageR
+    logoutDest _ = HomePageR
 
     authPlugins _ = [ authBrowserId def , authGoogleEmail ]
 

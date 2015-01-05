@@ -6,19 +6,20 @@ import Connect.Store
 
 -- | Returns a list of items associated with the referred content group. If the
 -- referred content group does not exist then an empty list will be returned.
-getItemListR :: String -> Handler Value
-getItemListR ref = do
+getItemsR :: String -> Handler Value
+getItemsR ref = do
   collection <- liftIO loadCollection
   return $ object [ "items" .= (findI $ lookupRef ref collection) ]
   
-postItemListR :: String -> Handler Value
-postItemListR ref = do
+postItemsR :: String -> Handler Value
+postItemsR ref = do
   newItem <- requireJsonBody :: Handler Item
   collection <- liftIO loadCollection
   liftIO $ saveCollection $ addItem ref newItem collection
   
-  return $ object [ "result" .= ("ok" :: String) ]
+  return $ object [ "result" .= ("ok" :: String), "ref" .= ref ]
 
+-- Creates a new course
 postCoursesR :: Handler Value
 postCoursesR = do
   newCourse <- requireJsonBody :: Handler Node
@@ -26,6 +27,8 @@ postCoursesR = do
   liftIO $ saveCollection $ addNode newCourse collection
   return $ object [ "result" .= ("ok" :: String) ]
 
+-- | Adds a new node to a referred subnode within the passed tree. 
+-- If the referenced subnode does not exist then the modification will be discarded
 postNodeR :: String -> Handler Value
 postNodeR ref = do
   newNode <- requireJsonBody :: Handler Node
@@ -33,5 +36,8 @@ postNodeR ref = do
   liftIO $ saveCollection $ addNodeR ref newNode collection
   return $ object [ "result" .= ("ok" :: String) ]
 
-postSkillDetailsR :: String -> Handler Value
-postSkillDetailsR = postNodeR
+postLessonsR :: String -> Handler Value
+postLessonsR = postNodeR
+
+postSkillsR :: String -> Handler Value
+postSkillsR = postNodeR

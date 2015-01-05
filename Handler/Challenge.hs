@@ -8,8 +8,8 @@ import Connect.Util
 import Connect.Validator
 import System.Random
 
-getChallengeR :: String -> Handler Html
-getChallengeR ref = do
+getChallengePageR :: String -> Handler Html
+getChallengePageR ref = do
   collection <- liftIO loadCollection
   gen <- lift $ liftIO newStdGen
 
@@ -20,14 +20,14 @@ getChallengeR ref = do
     setTitle "Challenge"
     $(widgetFile "challenge")
 
-postSolveChallengeR :: Handler Value
-postSolveChallengeR = do
+postChallengeR :: String -> Handler Value
+postChallengeR ref = do
   response <- requireJsonBody :: Handler Response
   maybeChallenge <- lookupSession "challenge"
   return $ object [ "result" .= checkR (fromSession maybeChallenge) response ]
 
-getNextChallengeR :: String -> Handler Value
-getNextChallengeR ref = do
+getChallengeR :: String -> Handler Value
+getChallengeR ref = do
   collection <- liftIO loadCollection
   gen <- lift $ liftIO newStdGen
 

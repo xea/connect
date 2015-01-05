@@ -15,40 +15,31 @@ connectApp.directive('focusOn', function($timeout) {
   };    
 });
 
-connectApp.controller('quoteController', function ($scope, $http) {
-	$scope.reloadQuote = function() { $http.get('wisdom').success(function(data) {
-		$scope.quotes = data;
-	})};
-
-	// initial load
-	$scope.reloadQuote();
-});
-
 connectApp.controller('challengeController', function($scope, $http) {
-	$scope.readingState = "input";
+	$scope.challengeState = "input";
 
 	$scope.init = function(ref) {
 		$scope.reference = ref;
 	};
 
 	$scope.isState = function(state) {
-		($scope.readingState == state) 
+		($scope.challengeState == state) 
 	};
 
-	$scope.submitReading = function(reading) { $http.post('/api/challenge', reading).success(function(result) {
+	$scope.submitResponse = function(response) { $http.post('/api/challenge/' + $scope.reference, response).success(function(result) {
 		if (result.result == "ok") {
-			$scope.readingState = "submitOK";
+			$scope.challengeState = "submitOK";
 		} else if (result.result == "warn") {
-			$scope.readingState = "submitWarn";
+			$scope.challengeState = "submitWarn";
 		} else {
-			$scope.readingState = "submitError";
+			$scope.challengeState = "submitError";
 		}
 	})};
 
-	$scope.nextReading = function(reading) { $http.get('/api/challenge/' + $scope.reference + '/next').success(function(result) {
+	$scope.nextChallenge = function(response) { $http.get('/api/challenge/' + $scope.reference + '/next').success(function(result) {
 		$scope.challengeText = result.displayText;
-		$scope.readingState = 'input';
-		reading.responseText = '';
+		$scope.challengeState = 'input';
+		response.responseText = '';
 	})};
 
 });
@@ -61,10 +52,10 @@ connectApp.controller('inventoryController', ['$scope', '$http', function($scope
 		$scope.getGroupItems();
 	}
 
-	$scope.addReadingItem = function(item) { 
+	$scope.createItem = function(item) { 
 		$scope.state = "adding";
 		item.answers = item.answers.trim().split(";");
-		$http.post('/api/lesson/' + $scope.reference, item).success(function(data) {
+		$http.post('/api/item/' + $scope.reference, item).success(function(data) {
 			$scope.item.displayText = "";
 			$scope.item.answers = "";
 			$scope.state = "input";
@@ -75,7 +66,7 @@ connectApp.controller('inventoryController', ['$scope', '$http', function($scope
 	$scope.createCourse = function(course) { 
 		course.tag = "Group";
 		course.nodeChildren = [];
-		$http.post('/api/course', course).success(function(result) {
+		$http.post('/api/courses', course).success(function(result) {
 			homeController.refreshCourses();
 	})};
 
@@ -86,19 +77,19 @@ connectApp.controller('inventoryController', ['$scope', '$http', function($scope
 	})};
 
 	$scope.createLesson = function(lesson) { 
-		lesson.tag = "Group";
-		lesson.nodeChildren = [];
-		$http.post('/api/lesson/' + $scope.reference, skill).success(function(result) {
+		lesson.tag = "ContentGroup";
+		lesson.groupItems = [];
+		$http.post('/api/lesson/' + $scope.reference, lesson).success(function(result) {
 	})};
 	
-	$scope.getGroupItems = function() { $http.get('/api/lesson/' + $scope.reference).success(function(result) {
+	$scope.getGroupItems = function() { $http.get('/api/item/' + $scope.reference).success(function(result) {
 		$scope.groupItems = result.items;
 	})};
 
 }]);
 
 connectApp.controller('homeController', function($scope, $http) {
-	$scope.refreshCourses = function() { $http.get('/api/course').success(function(response) {
+	$scope.refreshCourses = function() { $http.get('/api/courses').success(function(response) {
 		$scope.courses = response.courses;
 	})};
 
@@ -112,7 +103,7 @@ connectApp.controller('courseController', function($scope, $http) {
 	};
 
 	$scope.getSkills = function() { 
-		$http.get('/api/course/' + $scope.reference).success(function(response) {
+		$http.get('/api/skill/' + $scope.reference).success(function(response) {
 			$scope.skills = response.skills;
 	})};
 
@@ -125,7 +116,7 @@ connectApp.controller('skillController', function($scope, $http) {
 	};
 
 	$scope.getLessons = function() { 
-		$http.get('/api/skill/' + $scope.reference).success(function(response) {
+		$http.get('/api/lesson/' + $scope.reference).success(function(response) {
 			$scope.lessons = response.lessons;
 	})};
 

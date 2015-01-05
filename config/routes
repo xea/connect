@@ -4,18 +4,16 @@
 /favicon.ico                    FaviconR                GET
 /robots.txt                     RobotsR                 GET
                                 
-/                               HomeR                   GET         
-/course/#String                 CourseR                 GET
-/skill/#String                  SkillR                  GET
-/lesson/#String                 LessonR                 GET
-/challenge/#String              ChallengeR              GET 
-        
-/api/course                     CoursesR                GET POST
-/api/course/#String             CourseSkillsR           GET
-/api/skill/#String              SkillDetailsR           GET POST
-/api/challenge                  SolveChallengeR         POST
-/api/challenge/#String/next     NextChallengeR          GET
+/                               HomePageR               GET         
+/course/#String                 CoursePageR             GET
+/skill/#String                  SkillPageR              GET
+/lesson/#String                 LessonPageR             GET
+/challenge/#String              ChallengePageR          GET
 
-/api/lesson/#String             ItemListR               GET POST
+/api/courses                    CoursesR                GET POST
+/api/skill/#String              SkillsR                 GET POST
+/api/lesson/#String             LessonsR                GET POST
+/api/item/#String               ItemsR                  GET POST
+/api/challenge/#String          ChallengeR              GET POST
 
 /debug/writeTestData            WriteTestCollectionR    GET

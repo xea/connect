@@ -9,29 +9,29 @@
                 {{(challengeText) || "#{requestText challenge}" }}
             <small>Hiragana
     <div>
-        <div #reading-answer-panel.form-group ng-show="readingState == 'input'">
+        <div #reading-answer-panel.form-group ng-show="challengeState == 'input'">
             <div .input-group .col-lg-8>
-                <input #reading-answer .form-control .input-lg type="text" autocomplete="off" placeholder="Type your answer here" ng-model="reading.responseText" focus-on="readingState == 'input'">
+                <input #reading-answer .form-control .input-lg type="text" autocomplete="off" placeholder="Type your answer here" ng-model="response.responseText" focus-on="challengeState == 'input'">
                 <span .input-group-btn>
-                    <button .btn .btn-primary ng-click="submitReading(reading)">Send
-        <div #reading-success-panel .form-group ng-show="readingState == 'submitOK'">
+                    <button .btn .btn-primary ng-click="submitResponse(response)">Send
+        <div #reading-success-panel .form-group ng-show="challengeState == 'submitOK'">
             <div .alert .alert-success>
                 <div .input-group>
                     &nbsp; {{ reading.responseText }}
                 <span .input-group-btn>
-                    <button #gotit-ok .btn .btn-raised .btn-primary focus-on="readingState == 'submitOK'" ng-click="nextReading(reading)">OK
-        <div #gotit-err .form-group ng-show="readingState == 'submitError'">
+                    <button #gotit-ok .btn .btn-raised .btn-primary focus-on="challengeState == 'submitOK'" ng-click="nextChallege(response)">OK
+        <div #gotit-err .form-group ng-show="challengeState == 'submitError'">
             <div .alert .alert-danger>
                 <div .input-group>
                     &nbsp; {{ reading.responseText }}
                 <span .input-group-btn>
-                    <button #gotit-err .btn .btn-primary focus-on="readingState == 'submitError'" ng-click="nextReading(reading)">OK
-        <div #gotit-warn .form-group ng-show="readingState == 'submitWarn'">
+                    <button #gotit-err .btn .btn-primary focus-on="challengeState == 'submitError'" ng-click="nextResponse(response)">OK
+        <div #gotit-warn .form-group ng-show="challengeState == 'submitWarn'">
             <div .alert .alert-info>
                 <div .input-group>
                     &nbsp; {{ reading.responseText }}
                 <span .input-group-btn>
-                    <button #gotit-warn .btn .btn-primary focus-on="readingState == 'submitWarn'" ng-click="nextReading(reading)">OK
+                    <button #gotit-warn .btn .btn-primary focus-on="challengeState == 'submitWarn'" ng-click="nextChallenge(response)">OK
 <form .form-horizontal ng-controller="inventoryController" ng-init="init('#{ref}')">
     <fieldset>
         <legend>Item management
@@ -45,7 +45,7 @@
                 <input #new-reading .form-control  type="text" autocomplete="off" placeholder="Readings" ng-model="item.answers">
         <div .form-group>
             <div .col-lg-10 col-lg-offset-2>
-                <button .btn .btn-primary ng-click="addReadingItem(item)">Submit
+                <button .btn .btn-primary ng-click="createItem(item)">Submit
     <table .table .table-striped .table-hover>
         <thead>
             <tr>

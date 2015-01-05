@@ -6,26 +6,24 @@
             "nodeChildren": [
                 {
                     "tag": "Group",
-                    "nodeChildren": [],
+                    "nodeChildren": [
+                        {
+                            "tag": "ContentGroup",
+                            "groupItems": [
+                                {
+                                    "answers": [
+                                        "y"
+                                    ],
+                                    "displayText": "x"
+                                }
+                            ],
+                            "groupId": "Saying your name"
+                        }
+                    ],
                     "groupId": "Introduction"
-                },
-                {
-                    "tag": "Group",
-                    "nodeChildren": [],
-                    "groupId": "Simple present"
-                },
-                {
-                    "tag": "Group",
-                    "nodeChildren": [],
-                    "groupId": "Simple past"
                 }
             ],
             "groupId": "English"
-        },
-        {
-            "tag": "Group",
-            "nodeChildren": [],
-            "groupId": "German"
         }
     ]
 }

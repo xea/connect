@@ -5,15 +5,16 @@ import Connect.Core
 import Connect.Store
 --import Yesod.Auth
 
-getSkillR :: String -> Handler Html
-getSkillR ref = do
+getSkillPageR :: String -> Handler Html
+getSkillPageR ref = do
   defaultLayout $ do
     setTitle "Skill"
     $(widgetFile "skill")
 
-getSkillDetailsR :: String -> Handler Value
-getSkillDetailsR ref = do
+getSkillsR :: String -> Handler Value
+getSkillsR ref = do
   coll <- liftIO $ loadCollection
   let node = lookupRef ref coll
-  return $ object [ "lessons" .= zip (map groupId $ children node) (map groupId $ children node) ]
+  return $ object [ "skills" .= zip (map groupId $ children node) (map groupId $ children node) ]
+
   
