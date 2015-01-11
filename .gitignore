@@ -12,5 +12,3 @@ yesod-devel/
 cabal.sandbox.config
 .DS_Store
 *.swp
-*.iml
-.idea
